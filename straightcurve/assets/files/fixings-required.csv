@@ -1,0 +1,223 @@
+SKU,Bulk Quantity,Material,ReqScrew,ScrewType,FreePegs,FreeSpike,Bulk SKU,Manage Stock
+FL075WS,,Weathering steel,2,zinc,,3,FL075WS-Unipallet,TRUE
+FL075WS-Unipallet,70,Weathering steel,140,zinc,,,,TRUE
+FL075GS,,Galvanised steel,2,dacromet,,3,FL075GS-Unipallet,TRUE
+FL075GS-Unipallet,70,Galvanised steel,140,dacromet,,,,TRUE
+FL100WS,,Weathering steel,2,zinc,1,,FL100WS-Unipallet,TRUE
+FL100WS-Unipallet,70,Weathering steel,140,zinc,,,,TRUE
+FL100GS,,Galvanised steel,2,dacromet,1,,FL100GS-Unipallet,TRUE
+FL100GS-Unipallet,70,Galvanised steel,140,dacromet,,,,TRUE
+FL150WS,,Weathering steel,2,zinc,1,,FL150WS-Unipallet,TRUE
+FL150WS-Unipallet,50,Weathering steel,100,zinc,,,,TRUE
+FL150GS,,Galvanised steel,2,dacromet,1,,FL150GS-Unipallet,TRUE
+FL150GS-Unipallet,50,Galvanised steel,100,dacromet,,,,TRUE
+FL240WS,,Weathering steel,,,,5,FL240WS-Unipallet,TRUE
+FL240WS-Unipallet,30,Weathering steel,,,,,,TRUE
+FL240GS,,Galvanised steel,,,,5,FL240GS-Unipallet,TRUE
+FL240GS-Unipallet,30,Galvanised steel,,,,,,TRUE
+FL400WS,,Weathering steel,,,,5,FL400WS-Unipallet,TRUE
+FL400WS-Unipallet,20,Weathering steel,,,,,,TRUE
+FL400GS,,Galvanised steel,,,,5,FL400GS-Unipallet,TRUE
+FL400GS-Unipallet,20,Galvanised steel,,,,,,TRUE
+FL560WS,,Weathering steel,,,,5,FL560WS-Unipallet,TRUE
+FL560WS-Unipallet,10,Weathering steel,,,,,,TRUE
+FL560GS,,Galvanised steel,,,,5,FL560GS-Unipallet,TRUE
+FL560GS-Unipallet,10,Galvanised steel,,,,,,TRUE
+RL075WS,,Weathering steel,2,zinc,,3,RL075WS-Unipallet,TRUE
+RL075WS-Unipallet,70,Weathering steel,140,zinc,,,,TRUE
+RL075GS,,Galvanised steel,2,dacromet,,3,RL075GS-Unipallet,TRUE
+RL075GS-Unipallet,70,Galvanised steel,140,dacromet,,,,TRUE
+RL100WS,,Weathering steel,2,zinc,1,,RL100WS-Unipallet,TRUE
+RL100WS-Unipallet,70,Weathering steel,140,zinc,,,,TRUE
+RL100GS,,Galvanised steel,2,dacromet,1,,RL100GS-Unipallet,TRUE
+RL100GS-Unipallet,70,Galvanised steel,140,dacromet,,,,TRUE
+RL150WS,,Weathering steel,2,zinc,1,,RL150WS-Unipallet,TRUE
+RL150WS-Unipallet,50,Weathering steel,100,zinc,,,,TRUE
+RL150GS,,Galvanised steel,2,dacromet,1,,RL150GS-Unipallet,TRUE
+RL150GS-Unipallet,50,Galvanised steel,100,dacromet,,,,TRUE
+RL240WS,,Weathering steel,,,,5,RL240WS-Unipallet,TRUE
+RL240WS-Unipallet,30,Weathering steel,,,,,,TRUE
+RL240GS,,Galvanised steel,,,,5,RL240GS-Unipallet,TRUE
+RL240GS-Unipallet,30,Galvanised steel,,,,,,TRUE
+RL400WS,,Weathering steel,,,,5,RL400WS-Unipallet,TRUE
+RL400WS-Unipallet,20,Weathering steel,,,,,,TRUE
+RL400GS,,Galvanised steel,,,,5,RL400GS-Unipallet,TRUE
+RL400GS-Unipallet,20,Galvanised steel,,,,,,TRUE
+RL560WS,,Weathering steel,,,,5,RL560WS-Unipallet,TRUE
+RL560WS-Unipallet,10,Weathering steel,,,,,,TRUE
+RL560GS,,Galvanised steel,,,,5,RL560GS-Unipallet,TRUE
+RL560GS-Unipallet,10,Galvanised steel,,,,,,TRUE
+HL100WS,,Weathering steel,4,zinc,,4,HL100WS-Unipallet,TRUE
+HL100WS-Unipallet,22,Weathering steel,88,zinc,,,,TRUE
+HL100GS,,Galvanised steel,4,dacromet,,4,HL100GS-Unipallet,TRUE
+HL100GS-Unipallet,22,Galvanised steel,88,dacromet,,,,TRUE
+HL150WS,,Weathering steel,4,zinc,,4,HL150WS-Unipallet,TRUE
+HL150WS-Unipallet,18,Weathering steel,72,zinc,,,,TRUE
+HL150GS,,Galvanised steel,4,dacromet,,4,HL150GS-Unipallet,TRUE
+HL150GS-Unipallet,18,Galvanised steel,72,dacromet,,,,TRUE
+FHL400WS-400,,Weathering steel,,,,,FHL400WS-400-BLK,TRUE
+FHL400WS-400-BLK,10,Weathering steel,,,,,,TRUE
+FHL400WS-600,,Weathering steel,,,,,FHL400WS-600-BLK,TRUE
+FHL400WS-600-BLK,10,Weathering steel,,,,,,TRUE
+FHL400WS-800,,Weathering steel,,,,,FHL400WS-800-BLK,TRUE
+FHL400WS-800-BLK,10,Weathering steel,,,,,,TRUE
+FHL400WS-1000,,Weathering steel,,,,,FHL400WS-1000-BLK,TRUE
+FHL400WS-1000-BLK,10,Weathering steel,,,,,,TRUE
+FHL400WS-1200,,Weathering steel,,,,,FHL400WS-1200-BLK,TRUE
+FHL400WS-1200-BLK,10,Weathering steel,,,,,,TRUE
+FHL400WS-2000,,Weathering steel,,,,,FHL400WS-2000-BLK,TRUE
+FHL400WS-2000-BLK,10,Weathering steel,,,,,,TRUE
+FHL560WS-400,,Weathering steel,,,,,FHL560WS-400-BLK,TRUE
+FHL560WS-400-BLK,10,Weathering steel,,,,,,TRUE
+FHL560WS-600,,Weathering steel,,,,,FHL560WS-600-BLK,TRUE
+FHL560WS-600-BLK,10,Weathering steel,,,,,,TRUE
+FHL560WS-800,,Weathering steel,,,,,FHL560WS-800-BLK,TRUE
+FHL560WS-800-BLK,10,Weathering steel,,,,,,TRUE
+FHL560WS-1000,,Weathering steel,,,,,FHL560WS-1000-BLK,TRUE
+FHL560WS-1000-BLK,10,Weathering steel,,,,,,TRUE
+FHL560WS-1200,,Weathering steel,,,,,FHL560WS-1200-BLK,TRUE
+FHL560WS-1200-BLK,10,Weathering steel,,,,,,TRUE
+FHL560WS-2000,,Weathering steel,,,,,FHL560WS-2000-BLK,TRUE
+FHL560WS-2000-BLK,10,Weathering steel,,,,,,TRUE
+FL240WS-CRNR-SET,,Weathering steel,,,,,,TRUE
+FL240GS-CRNR-SET,,Galvanised steel,,,,,,TRUE
+FL400WS-CRNR-SET,,Weathering steel,,,,,,TRUE
+FL400GS-CRNR-SET,,Galvanised steel,,,,,,TRUE
+FL560WS-CRNR-SET,,Weathering steel,,,,,,TRUE
+FL560GS-CRNR-SET,,Galvanised steel,,,,,,TRUE
+RL075WS-CRNR,,Weathering steel,2,zinc,,,,TRUE
+RL075GS-CRNR,,Galvanised steel,2,dacromet,,,,TRUE
+HL100WS-CRNR,,Weathering steel,4,dacromet,,,,TRUE
+HL100GS-CRNR,,Galvanised steel,4,dacromet,,,,TRUE
+HL150WS-CRNR,,Weathering steel,4,zinc,,,,TRUE
+HL150GS-CRNR,,Galvanised steel,4,dacromet,,,,TRUE
+FL100WS-CRNR,,Weathering steel,2,zinc,,,,TRUE
+FL100GS-CRNR,,Galvanised steel,2,dacromet,,,,TRUE
+FL150WS-CRNR,,Weathering steel,2,zinc,,,,TRUE
+FL150GS-CRNR,,Galvanised steel,2,dacromet,,,,TRUE
+FL240WS-SLV,,Weathering steel,6,zinc,,,FL240WS-SLV-BLK,TRUE
+FL240WS-SLV-BLK,10,Weathering steel,60,zinc,,,,TRUE
+FL240GS-SLV,,Galvanised steel,6,dacromet,,,FL240GS-SLV-BLK,TRUE
+FL240GS-SLV-BLK,10,Galvanised steel,60,dacromet,,,,TRUE
+FL400WS-SLV,,Weathering steel,8,zinc,,,FL400WS-SLV-BLK,TRUE
+FL400WS-SLV-BLK,10,Weathering steel,80,zinc,,,,TRUE
+FL400GS-SLV,,Galvanised steel,8,dacromet,,,FL400GS-SLV-BLK,TRUE
+FL400GS-SLV-BLK,10,Galvanised steel,80,dacromet,,,,TRUE
+FL560WS-SLV,,Weathering steel,10,zinc,,,FL560WS-SLV-BLK,TRUE
+FL560WS-SLV-BLK,10,Weathering steel,100,zinc,,,,TRUE
+FL560GS-SLV,,Galvanised steel,10,dacromet,,,FL560GS-SLV-BLK,TRUE
+FL560GS-SLV-BLK,10,Galvanised steel,100,dacromet,,,,TRUE
+BSTRUT,,Galvanised steel,4,dacromet,,,BSTRUT-BLK,TRUE
+BSTRUT-BLK,20,Galvanised steel,80,dacromet,,,,TRUE
+FHL-UCSE-WS400,,Weathering steel,8,dacromet,,,FHL-UCSE-WS400-BLK,TRUE
+FHL-UCSE-WS400-BLK,20,Weathering steel,160,dacromet,,,,TRUE
+FHL-UCSE-GS400,,Galvanised steel,8,dacromet,,,,TRUE
+FHL-UCSE-WS560,,Weathering steel,8,dacromet,,,FHL-UCSE-WS560-BLK,TRUE
+FHL-UCSE-WS560-BLK,20,Weathering steel,160,dacromet,,,,TRUE
+FHL-UCSE-GS560,,Galvanised steel,8,dacromet,,,,TRUE
+FHL-UCSI-400,,Mild steel,6,dacromet,,,FHL-UCSI-400-BLK,TRUE
+FHL-UCSI-400-BLK,100,Mild steel,600,dacromet,,,,TRUE
+FHL-UCSI-560,,Mild steel,6,dacromet,,,FHL-UCSI-560-BLK,TRUE
+FHL-UCSI-560-BLK,100,Mild steel,120,dacromet,,,,TRUE
+FHL400JS-WS,,Weathering steel,12,dacromet,,,FHL400JS-WS-BLK,TRUE
+FHL400JS-WS-BLK,40,Weathering steel,480,dacromet,,,,TRUE
+FHL400JS-GS,,Galvanised steel,12,dacromet,,,,TRUE
+FHL560JS-WS,,Weathering steel,12,dacromet,,,FHL560JS-WS-BLK,TRUE
+FHL560JS-WS-BLK,40,Weathering steel,480,dacromet,,,,TRUE
+FHL560JS-GS,,Galvanised steel,12,dacromet,,,,TRUE
+FHL-BS,,Mild steel,,,,,FHL-BS-BLK,TRUE
+FHL-BS-BLK,20,Mild steel,,,,,,TRUE
+BS-UNI-ST,,Galvanised steel,,,,,BS-UNI-ST-BLK,TRUE
+BS-UNI-ST-BLK,20,Galvanised steel,,,,,,TRUE
+RIB400FHL,,Mild steel,,,,,RIB400FHL-BLK,TRUE
+RIB400FHL-BLK,40,Mild steel,,,,,,TRUE
+RIB560FHL,,Mild steel,,,,,RIB560FHL-BLK,TRUE
+RIB560FHL-BLK,40,Mild steel,,,,,,TRUE
+RIB240MS,,Mild steel,,,,,RIB240MS-BLK,TRUE
+RIB240MS-BLK,40,Mild steel,,,,,,TRUE
+RIB400MS,,Mild steel,,,,,RIB400MS-BLK,TRUE
+RIB400MS-BLK,40,Mild steel,,,,,,TRUE
+RIB560MS,,Mild steel,,,,,RIB560MS-BLK,TRUE
+RIB560MS-BLK,40,Mild steel,,,,,,TRUE
+HSP185,,Mild Steel,,,,,,TRUE
+PEG-WS-HD,,Weathering steel,,,,,PEG-WS-HD-BLK,TRUE
+PEG-WS-HD-BLK,50,Weathering steel,,,,,,TRUE
+SC-PEG-WS,,,,,,,SC-PEG-WS-BLK,TRUE
+SC-PEG-WS-BLK,10,Weathering steel,,,,,,TRUE
+SC-PEG-GS,,,,,,,SC-PEG-GS-BLK,TRUE
+SC-PEG-GS-BLK,10,Galvanised steel,,,,,,TRUE
+SC-PEG-GS-3FREE,,Galvanised steel,,,,,,FALSE
+SC-PEG-WS-3FREE,,Weathering steel,,,,,,FALSE
+SPIKE-FREE,,Galvanised steel,,,,,,FALSE
+SPIKE,,Galvanised steel,,,,,,TRUE
+SPIKE-BOX,,Galvanised steel,,,,,,TRUE
+SCPR-4-SS-B20,,Stainless steel,,,,,SCPR-4-SS-B20-BLK,TRUE
+SCPR-4-SS-B20-BLK,100,Stainless steel,,,,,,TRUE
+SCPR-4-SS-B250,,Stainless steel,,,,,SCPR-4-SS-B250-BLK,TRUE
+SCPR-4-SS-B250-BLK,18,Stainless steel,,,,,,TRUE
+TSCZ12G-B20,,zinc,,,,,TSCZ12G-B20-BLK,TRUE
+TSCZ12G-B20-BLK,100,zinc,,,,,,TRUE
+TSCZ12G-B50,,zinc,,,,,TSCZ12G-B50-BLK,TRUE
+TSCZ12G-B50-BLK,100,zinc,,,,,,TRUE
+TSCZ12G-B250,,zinc,,,,,TSCZ12G-B250-BLK,TRUE
+TSCZ12G-B250-BLK,18,zinc,,,,,,TRUE
+TSDM12G-B20,,zinc,,,,,TSDM12G-B20-BLK,TRUE
+TSDM12G-B20-BLK,100,dacromet,,,,,,TRUE
+TSDM12G-B50,,dacromet,,,,,TSDM12G-B50-BLK,TRUE
+TSDM12G-B50-BLK,100,dacromet,,,,,,TRUE
+TSDM12G-B250,,dacromet,,,,,TSDM12G-B250-BLK,TRUE
+TSDM12G-B250-BLK,18,dacromet,,,,,,TRUE
+POST-1100,,Galvanised steel,4,dacromet,,,POST-1100-BLK,TRUE
+POST-1100-BLK,12,Galvanised steel,48,dacromet,,,,TRUE
+POST-470,,Galvanised steel,2,dacromet,,,POST-470-BLK,TRUE
+POST-470-BLK,20,Galvanised steel,40,dacromet,,,,TRUE
+ANCHOR-SET-FL-PRTS,,Galvanised steel,6,dacromet,,,ANCHOR-SET-FL-PRTS-BLK,TRUE
+ANCHOR-SET-FL-PRTS-BLK,20,Galvanised steel,120,dacromet,,,,TRUE
+DB8-2PCK,,Stainless steel,,,,,DB8-2PCK-BLK,TRUE
+DB8-2PCK-BLK,100,Stainless steel,,,,,,TRUE
+DB8-FREE,,Stainless steel,,,,,,FALSE
+FL100HSB,,Weathering steel,,,,,FL100HSB-BLK,TRUE
+FL100HSB-BLK,40,Weathering steel,,,,,,TRUE
+FL150HSB,,Weathering steel,,,,,FL150HSB-BLK,TRUE
+FL150HSB-BLK,40,Weathering steel,,,,,,TRUE
+JN-SET-2P,,Mild steel,,,,,,FALSE
+JN-SET-3P,,Mild steel,,,,,,FALSE
+BROCHURE-23,,,,,,,,TRUE
+FHL-UCSE-GS560,,,,,,,FHL-UCSE-GS560-BLK,TRUE
+FHL-UCSE-GS560-BLK,10,,,,,,,TRUE
+FHL560JS-GS,,,,,,,FHL560JS-GS-BLK,TRUE
+FHL560JS-GS-BLK,10,,,,,,,TRUE
+FHL400JS-GS,,,,,,,FHL400JS-GS-BLK,TRUE
+FHL400JS-GS-BLK,10,,,,,,,TRUE
+FHL-UCSE-GS400,,,,,,,FHL-UCSE-GS400-BLK,TRUE
+FHL-UCSE-GS400-BLK,10,,,,,,,TRUE
+FHL560GS-400,,,,,,,FHL560GS-400-BLK,TRUE
+FHL560GS-400-BLK,10,,,,,,,TRUE
+FHL560GS-600,,,,,,,FHL560GS-600-BLK,TRUE
+FHL560GS-600-BLK,10,,,,,,,TRUE
+FHL560GS-800,,,,,,,FHL560GS-800-BLK,TRUE
+FHL560GS-800-BLK,10,,,,,,,TRUE
+FHL560GS-1000,,,,,,,FHL560GS-1000-BLK,TRUE
+FHL560GS-1000-BLK,10,,,,,,,TRUE
+FHL560GS-1200,,,,,,,FHL560GS-1200-BLK,TRUE
+FHL560GS-1200-BLK,10,,,,,,,TRUE
+FHL560GS-2000,,,,,,,FHL560GS-2000-BLK,TRUE
+FHL560GS-2000-BLK,10,,,,,,,TRUE
+FHL400GS-400,,,,,,,FHL400GS-400-BLK,TRUE
+FHL400GS-400-BLK,10,,,,,,,TRUE
+FHL400GS-600,,,,,,,FHL400GS-600-BLK,TRUE
+FHL400GS-600-BLK,10,,,,,,,TRUE
+FHL400GS-800,,,,,,,FHL400GS-800-BLK,TRUE
+FHL400GS-800-BLK,10,,,,,,,TRUE
+FHL400GS-1000,,,,,,,FHL400GS-1000-BLK,TRUE
+FHL400GS-1000-BLK,10,,,,,,,TRUE
+FHL400GS-1200,,,,,,,FHL400GS-1200-BLK,TRUE
+FHL400GS-1200-BLK,10,,,,,,,TRUE
+FHL400GS-2000,,,,,,,FHL400GS-2000-BLK,TRUE
+FHL400GS-2000-BLK,10,,,,,,,TRUE
+FL560WS-CRNR-REV-SET,,,,,,,,TRUE
+FL400WS-CRNR-REV-SET,,,,,,,,TRUE
+FL240WS-CRNR-REV-SET,,,,,,,,TRUE
+PR240WS-800-BOX3,,,,,,,,TRUE
+PR400WS-800-BOX3,,,,,,,,TRUE
+PR560WS-800-BOX3,,,,,,,,TRUE

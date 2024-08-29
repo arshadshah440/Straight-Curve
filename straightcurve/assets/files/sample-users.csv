@@ -1,0 +1,4 @@
+user_type,first_name,last_name,email,phone,billing_company,billing_address_1,billing_city,billing_state,billing_postcode,billing_country,warehouse_code,Credit Limit,Credit approved
+Customer,John,Doe,john@example.com,00 0000 0000,Company Name 1,111 Bell Street,Pialligo,ACT,2600,AU,JET,20000,TRUE
+Dealer,Jane,Doe,jane@example.com,00 0000 0000,Company Name 2,123 Rock Street,Cremorne,VIC,3121,AU,JET,10000,TRUE
+PRO,Jane,Smith,janesmith@example.com,00 0000 0000,Company Name 2,123 Rock Street,Cremorne,VIC,3121,AU,JET,10000,TRUE

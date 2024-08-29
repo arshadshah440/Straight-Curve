@@ -1,0 +1,104 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+    font-family: 'Gibson';
+    src: url(../fonts/gibson/fonnts.com-Gibson_Regular.otf);
+  }
+@font-face {
+    font-family: 'GibsonSemiBold';
+    src: url(../fonts/gibson/fonnts.com-Gibson_SemiBold.otf);
+  }
+@font-face {
+    font-family: 'GibsonBold';
+    src: url(../fonts/gibson/fonnts.com-Gibson_Bold.otf);
+  }
+  :root {
+    --font-family-arial: "Arial";
+    --font-family-gibson: "Gibson";
+    --font-size-14: 14px;
+    --font-size-16: 16px;
+    --font-size-18: 18px;
+    --font-size-20: 20px;
+    --font-size-24: 24px;
+    --font-size-30: 30px;
+    --font-size-32: 32px;
+    --font-size-40: 40px;
+    --font-size-48: 48px;
+    --font-size-50: 50px;
+    --font-size-60: 60px;
+    --font-color-black-100: #000000;
+    --font-color-black-80: #333333;
+    --font-color-black-60: #666666;
+    --font-color-black-40: #999999;
+    --font-color-black-20: #cccccc;
+    --font-color-black-10: #e6e6e6;
+    --font-color-black-5: #f2f2f2;
+    --font-color-black-0: #ffffff;
+    --font-color-orange-100: #da7924;
+    --font-color-green-100: #1b4932;
+    --font-color-green-10: #1b49321a;
+    --font-color-green-5: #1b49320d;
+    --darkgreen-global: "";
+    --gibson-regular: "Gibson";
+    --arial-fonts: Arial;
+    --raleway-fonts: "Raleway", sans-serif;
+    --secondary-secondary-100: #da7924;
+    --greendarkfade: #1b4932;
+    --white-white-10: rgba(255, 255, 255, 0.1);
+    --white-white-80: rgba(255, 255, 255, 0.8);
+    --white-white-5: rgba(255, 255, 255, 0.05);
+    --primary-primary-5: rgba(27, 73, 50, 0.05);
+    --white-white-100: #fff;
+    --black-100: #000;
+    --black-black-80: rgba(0, 0, 0, 0.8);
+    --black-black-60: rgba(0, 0, 0, 0.6);
+    --primary-primary-40: rgba(27, 73, 50, 0.4);
+    --secondary-secondary-5: #da79240d;
+    --dark-slate-dark-slate-100: #49585b;
+    --primary-primary-10: rgba(27, 73, 50, 0.1);
+    --white-white-20: rgba(255, 255, 255, 0.2);
+    --black-black-20: rgba(0, 0, 0, 0.2);
+    --font-size-12: 12px;
+    --white-white-60: rgba(255, 255, 255, 0.6);
+    --primary-primary-100: #1b4932;
+    --black-black-10: #0000001A;
+    --black-black-40: #00000066;
+}
+
+
+/* header{
+    display: none;
+} */
+p{
+    margin: 0px;
+}
+.container_ar_mi{
+    width: 1216px;
+    margin: auto;
+}
+.pad_top_bottom_90{
+    padding: 90px 0px;
+}
+.pad_top_bottom_80{
+    padding: 80px 0px;
+}
+.pad_top_bottom_60{
+    padding: 60px 0px;
+}
+.pad_top_bottom_80_90{
+    padding: 80px 0px 90px 0px;
+}
+
+@media(max-width:1220px){
+    .container_ar_mi{ 
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+}

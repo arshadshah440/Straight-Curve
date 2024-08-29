@@ -1,0 +1,129 @@
+{
+    "key": "group_6698bb749cabd",
+    "title": "Homepage Accordian Section",
+    "fields": [
+        {
+            "key": "field_6698bb8bcdb2f",
+            "label": "Homepage Accordian Section Title",
+            "name": "homepage_accordian_section_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Lorem ipsum dolor sit conse.",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6698bba5cdb30",
+            "label": "Homepage Accordian Section Description",
+            "name": "homepage_accordian_section_description",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "We manufacture a full range of garden edging products that are simple to install, attractive, extremely hard wearing and affordably priced.",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_6698bbbdcdb31",
+            "label": "Homepage Accordian",
+            "name": "homepage_accordian",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_6698bbc9cdb32",
+                    "label": "Homepage Accordian Heading",
+                    "name": "homepage_accordian_heading",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Weathered steel garden edging: practical, beautiful and durable",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_6698bbddcdb33",
+                    "label": "Homepage Accordian Description",
+                    "name": "homepage_accordian_description",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Many people use DIY steel garden edging to make their backyards and gardens easier to maintain. Quality edging will stop grass from your lawn from creeping into adjacent areas where you don’t want it. It will also prevent mulch from getting all over your lawn or patio every time you water your flower beds. There are many practical advantages but aesthetics and longevity are important to most people too, which is where our rusted steel garden edging comes into its own.\r\nIn the 1930s, U.S. Steel developed a steel alloy for use in outdoor environments, which wouldn’t need to be painted. It was named Corten Steel. Garden edging made from similar steel alloys comprises an important part of our range. The steel is designed to acquire an attractive patina in a relatively short period of time and this surface rust actually protects the steel from further corrosion. With our weathered steel edging, you can create beautiful flower beds, lawn areas, garden paths, and tree surrounds that will really stand the test of time.\r\nWith soil and atmospheric conditions varying greatly and a swathe of outlier conditions found in the field, we can’t provide a precise lifespan guarantee, but on average high-quality Weathering Steel can be expected to last for ten years or more.",
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "delay": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates\/HomeTemplate.php"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates\/DIYGardenTemplate.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1722955456
+}

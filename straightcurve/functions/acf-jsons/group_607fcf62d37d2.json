@@ -1,0 +1,45 @@
+{
+    "key": "group_607fcf62d37d2",
+    "title": "Google Sheets ID",
+    "fields": [
+        {
+            "key": "field_607fcf6a3620c",
+            "label": "Page ID",
+            "name": "page_id",
+            "type": "number",
+            "instructions": "This is the unique identifier for each page in Google Sheets.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1619069291
+}

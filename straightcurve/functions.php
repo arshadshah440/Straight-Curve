@@ -15,6 +15,8 @@ include('functions/woocommerce-customisation.php');
 if (current_site() === 'au') {
     include('functions/woo-stock.php');
 }
+include get_template_directory(  ) . '/admin/quotewithoutpayment.php';
+
 
 // Author meta tag
 define('AUTHOR', 'Straightcurve');
@@ -184,6 +186,7 @@ function enqueue_admin_style()
     if (is_admin()) {
         wp_enqueue_style('custom-admin-style', get_stylesheet_directory_uri() . '/assets/adminCss/custom-admin-style.css');
     }
+
 }
 add_action('init', 'enqueue_admin_style');
 
@@ -854,6 +857,8 @@ add_filter('upload_mimes', 'cc_mime_types');
 
 function my_theme_enqueue_styles()
 {
+    global $current_site;
+
     $enqueufiles = array(
         array('handle' => 'GlobalCss', 'src' => '/assets/css/Global.css', 'type' => 'style', 'dep' => array(), 'loc' => 'internal'),
         array('handle' => 'FontCss', 'src' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css', 'type' => 'style', 'dep' => array(), 'loc' => 'external'),
@@ -861,6 +866,7 @@ function my_theme_enqueue_styles()
         array('handle' => 'Queriescss', 'src' => '/assets/css/Queries.css', 'type' => 'style', 'dep' => array(), 'loc' => 'internal'),
         array('handle' => 'diycss', 'src' => '/assets/css/DIYgarden.css', 'type' => 'style', 'dep' => array(), 'loc' => 'internal'),
         array('handle' => 'headerCss', 'src' => '/assets/css/header.css', 'type' => 'style', 'dep' => array(), 'loc' => 'internal'),
+        array('handle' => 'quotecss', 'src' => '/assets/css/quote.css', 'type' => 'style', 'dep' => array(), 'loc' => 'internal'),
         array('handle' => 'footercss', 'src' => '/assets/css/footer.css', 'type' => 'style', 'dep' => array(), 'loc' => 'internal'),
         array('handle' => 'appjs', 'src' => '/js/app.js', 'type' => 'script', 'dep' => array('jquery'), 'loc' => 'internal'),
         array('handle' => 'mainjs', 'src' => '/assets/js/main.js', 'type' => 'script', 'dep' => array('jquery'), 'loc' => 'internal'),
@@ -891,6 +897,16 @@ function my_theme_enqueue_styles()
             wp_enqueue_script($enfiles['handle'], $src, $dep, $ver, true);
         }
     }
+
+    // if ($current_site->site_id === 1) { // Website 1
+    //     wp_enqueue_script('mainjs', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true);
+    // }
+    // if ($current_site->site_id === 1) { // Website 2
+    //     wp_localize_script('website1-ajax', 'website1_data', array(
+    //         'site_id' => $current_site->site_id,
+    //         'nonce' => wp_create_nonce('website1_add_to_cart_nonce')
+    //     ));
+    // }
 }
 
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
@@ -1196,6 +1212,12 @@ function render_accordion_sectionss($currentpage)
 
     return $output;
 }
+/**
+ * Renders the video section for a product page.
+ *
+ * @param int $currentid The post ID of the current product.
+ * @return string The HTML for the video section.
+ */
 function render_video_sectionss($currentid)
 {
     $videofile = get_field('product_video', $currentid);
@@ -1247,6 +1269,10 @@ function pr_accessoriesss(array $accessories)
         $output .= '            <h5>' . esc_html($title) . '</h5>';
         $output .= '        </a>';
         $output .= '        <p>' . esc_html($smaldesc) . '</p>';
+        // Add the Add to Cart button
+        $output .= '        <div class="add_to_cart_button">';
+        $output .=              do_shortcode('[add_to_cart id="' . $productid . '"]');
+        $output .= '        </div>';
         $output .= '    </div>';
         $output .= '</div>';
     }
@@ -1254,11 +1280,11 @@ function pr_accessoriesss(array $accessories)
     return $output; // Output the accumulated HTML
 }
 
-
-// add to cart the product
-
 function addtocart()
 {
+
+    switch_to_blog(2);
+
     // Check if WooCommerce is active
     if (!class_exists('WooCommerce')) {
         wp_send_json_error(array('message' => 'WooCommerce is not active.'));
@@ -1267,30 +1293,64 @@ function addtocart()
     // Retrieve data from the AJAX request
     $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
     $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
-    switch_to_blog(2);
 
     // Validate product ID
     if (!$product_id) {
         wp_send_json_error(array('message' => 'Invalid product ID.'));
     }
+    $cart_count_before = WC()->cart->get_cart_contents_count();
 
+
+
+
+    // Output result
+    // Switch to the blog where the product is located (e.g., blog ID 2)
     $product = wc_get_product($product_id);
+    $after = WC()->cart->get_cart_contents_count();
 
+    // Ensure the product was found on the other blog
     if (!$product) {
-        wp_send_json_error(array('message' => 'Product not found.', 'product_id' => $product_id));
+        wp_send_json_error(array('message' => 'Product not found on the specified blog.', 'product_id' => $product_id, 'cart_count' => get_current_blog_id()));
     }
+
+    // Now add the product to the cart in the current WooCommerce context
     $results = WC()->cart->add_to_cart($product_id, $quantity);
+
     if ($results) {
+        $updatedmincart = getupdatedminicart();
         wp_send_json_success(array(
-            'message' => 'Product(s) added to cart.',
-            'redirect_url' =>  wc_get_cart_url(),
+            'message' => 'Product added to cart!',
+            'minicart' => $updatedmincart,
+            'cart_count' =>  get_current_blog_id()
         ));
     } else {
-        wp_send_json_error(array('message' => 'Failed to add product to cart.'));
+        wp_send_json_error(array('message' => 'Failed to add product to cart.', 'cart_count' => $after - $cart_count_before));
     }
-    restore_current_blog();
+        restore_current_blog(); // Switch back to the original blog
 
     die();
+    // restore_current_blog(); // Switch back to the original blog
 }
 add_action('wp_ajax_addtocart', 'addtocart');
 add_action('wp_ajax_nopriv_addtocart', 'addtocart');
+
+function getupdatedminicart()
+{
+    ob_start();
+    include get_template_directory() . '/template-parts/headers/mini-cart.php';
+    return ob_get_clean();
+};
+
+// redirect to a differnet page
+add_action('template_redirect', 'redirect_to_custom_page_after_cart_update');
+function redirect_to_custom_page_after_cart_update() {
+    // Check if the cart is being updated
+    if (is_cart() && !empty($_POST['update_cart'])) {
+        // Set the URL to the WordPress page you want to redirect to
+        $redirect_url = home_url('/quote');
+        if ($redirect_url) {
+            wp_safe_redirect($redirect_url);
+            exit;
+        }
+    }
+}

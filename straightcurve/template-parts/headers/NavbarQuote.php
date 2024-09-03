@@ -64,28 +64,18 @@
                     <a href="<?php echo home_url(); ?>"> <img src="<?php echo get_field('header_logo', 'option'); ?>"
                             alt="Straight Curve Logo"></a>
                 </div>
-                <div class="header_menu_ar hide_mobile_ar" id="mobile_nav_ar">
-                    <div class="flex_mob_pops_wrapper_ar">
+                <div class="header_menu_ar">
+                    <div class="flex_mob_pops_wrapper_ar" id="quote_header_ar">
 
 
                         <div class="menu_header_mb_ar_close">
-
-                            <div class="mipopupheader_ar">
-                                <div class="straight_logo_header_ar">
-                                    <a href="<?php echo home_url(); ?>"> <img src="<?php echo get_field('header_logo', 'option'); ?>"
-                                            alt="Straight Curve Logo"></a>
-                                </div>
-                                <div class="close_btn_ar" id="close_btn_ar">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </div>
-                            </div>
 
                             <div class="dropdown">
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <ul class="mainmenulist">
                                         <?php
                                         // Specify the menu location
-                                        $menu_location = 'header_menu';
+                                        $menu_location = 'quote-menu';
                                         $svg_path = get_template_directory() . '/assets/img/chevronbottom.svg';
                                         $chevronlink = get_svg_content($svg_path);
 
@@ -139,27 +129,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="cta_header_ar show_mobile_ar">
-                            <a href="<?php echo get_field('header_cta_link', 'option'); ?>">
-                                <?php echo get_field('header_cta_text', 'option'); ?>
-                            </a>
-                        </div>
                     </div>
-                </div>
-                <div class="cta_header_ar hide_mobile_ar get_price_list_popup">
-                    <div class="mini_cart_ar">
-                        <?php include get_template_directory() . '/assets/img/Vector (31).svg' ?>
-                    </div>
-                    <a href="<?php echo get_field('header_cta_link', 'option'); ?>">
-                        <?php echo get_field('header_cta_text', 'option'); ?>
-                    </a>
-                </div>
-                <div class="mobile_menu_toggler_ar" id="mobile_menu_toggler_ar">
-                    <?php include get_template_directory() . '/assets/img/toggle.svg' ?>
                 </div>
             </nav>
-        </div>
-        <div id="minicart_ar">
-            <?php include get_template_directory() . '/template-parts/headers/mini-cart.php' ?>
         </div>
 </header>

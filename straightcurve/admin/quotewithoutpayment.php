@@ -27,14 +27,27 @@
 
         // Email to admin
         $admin_email = get_option('admin_email');
+
         wp_mail($admin_email, 'New Quote Submission', $tsv_content, array('Content-Type: text/html; charset=UTF-8'));
 
         // Email to user
         wp_mail($email, 'Your Quote Submission', $tsv_content, array('Content-Type: text/html; charset=UTF-8'));
 
-        $reddirectedurl=home_url('/au/thank-you/');
+        if (! WC()->cart) {
+            wc_load_cart();
+        }
+        // update the acf field of number of people requested the quote
+        $requestedpeoples = get_field('number_of_people_requested_the_quote', 'options');
+        $requestedpeople = $requestedpeoples + 1;
+        update_field('number_of_people_requested_the_quote', $requestedpeople, 'options');
 
-        wp_send_json_success(array('message' => 'Quote submitted successfully.' ,'redirect' => $reddirectedurl));
+        // empty the cart
+        WC()->cart->empty_cart();
+        $reddirectedurl = home_url('/thank-you/');
+
+        wp_send_json_success(array('message' => 'Quote submitted successfully.', 'redirect' => $reddirectedurl));
+
+        die();
     }
 
     add_action('wp_ajax_submit_quote', 'submit_quote');

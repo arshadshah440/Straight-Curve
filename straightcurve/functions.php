@@ -15,7 +15,7 @@ include('functions/woocommerce-customisation.php');
 if (current_site() === 'au') {
     include('functions/woo-stock.php');
 }
-include get_template_directory(  ) . '/admin/quotewithoutpayment.php';
+include get_template_directory() . '/admin/quotewithoutpayment.php';
 
 
 // Author meta tag
@@ -53,6 +53,7 @@ function site_custom_sizes($sizes)
 function register_site_menus()
 {
     register_nav_menu('primary-menu', 'Primary Menu');
+    register_nav_menu('quote-menu', 'Quote Page Menu');
 }
 add_action('after_setup_theme', 'register_site_menus');
 
@@ -186,7 +187,6 @@ function enqueue_admin_style()
     if (is_admin()) {
         wp_enqueue_style('custom-admin-style', get_stylesheet_directory_uri() . '/assets/adminCss/custom-admin-style.css');
     }
-
 }
 add_action('init', 'enqueue_admin_style');
 
@@ -875,6 +875,8 @@ function my_theme_enqueue_styles()
         array('handle' => 'owlcss', 'src' => 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css', 'type' => 'style', 'dep' => array(), 'loc' => 'external'),
         array('handle' => 'swipejs', 'src' => 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js', 'type' => 'script', 'dep' => array(), 'loc' => 'external'),
         array('handle' => 'swipecss', 'src' => 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css', 'type' => 'style', 'dep' => array(), 'loc' => 'external'),
+        array('handle' => 'html2pdf', 'src' => 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.0/html2pdf.bundle.min.js', 'type' => 'script', 'dep' => array('jquery'), 'loc' => 'external'),
+        array('handle' => 'jspdf', 'src' => 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js', 'type' => 'script', 'dep' => array('jquery'), 'loc' => 'external'),
     );
 
     foreach ($enqueufiles as $enfiles) {
@@ -1098,7 +1100,10 @@ function showproductsar()
     $currentpageid = isset($_POST['currentpageid']) ? sanitize_text_field($_POST['currentpageid']) : '';
     $current_type = isset($_POST['current_type']) ? sanitize_text_field($_POST['current_type']) : '';
     $currentactivetabs = isset($_POST['currentactivetabs']) ? sanitize_text_field($_POST['currentactivetabs']) : '';
-    switch_to_blog(2);
+    $flexproducts = get_field('flex_garden_products', $currentpageid);
+    $rigidproducts = get_field('rigid_garden_products', $currentpageid);
+    $zeroflexproducts = get_field('zero_flex_garden_products', $currentpageid);
+    // switch_to_blog(2);
 
     $args = array(
         'post_type' => 'product',
@@ -1139,44 +1144,65 @@ function showproductsar()
             $finishing = $productinfo['finish'];
 
             if ($categoryvalue == strtolower($finishing)) {
-                $filtered_products[] = $product_ids;
+                if ($stylevalue == 'zero-flex' && in_array($product_ids, $zeroflexproducts)) {
+                    $filtered_products[] = $product_ids;
+                } else if ($stylevalue == 'rigid' && in_array($product_ids, $rigidproducts)) {
+                    $filtered_products[] = $product_ids;
+                }
+                if ($stylevalue == 'flex' && in_array($product_ids, $flexproducts)) {
+                    $filtered_products[] = $product_ids;
+                }
             }
         }
         wp_reset_postdata();
     }
-    $accord = render_accordion_sectionss($filtered_products[0]);
-    $accord_v = render_video_sectionss($filtered_products[0]);
-    $thumbnail = get_the_post_thumbnail_url($filtered_products[0]);
-    $title = get_the_title($filtered_products[0]);
-    $productinfo = get_field("product_info", $filtered_products[0]);
-    $size = $productinfo['details'];
-    $addons = get_field('add-ons', $filtered_products[0]);
-    $accery_html = '';
-    if ($addons['accessories']) {
-        $accver =  $addons['accessories'];
-        foreach ($accver as $v) {
-            $accer = pr_accessoriesss($v['product']);
-            $accery_html .= $accer;
+    if (count($filtered_products) == 0) {
+        $accord_result = [
+            'title' => "Product not found",
+        ];
+
+        echo json_encode($accord_result);
+    } else {
+
+
+        $accord = render_accordion_sectionss($filtered_products[0]);
+        $accord_v = render_video_sectionss($filtered_products[0]);
+        $thumbnail = get_the_post_thumbnail_url($filtered_products[0]);
+        $title = get_the_title($filtered_products[0]);
+        $productinfo = get_field("product_info", $filtered_products[0]);
+        $size = $productinfo['details'];
+        $addons = get_field('add-ons', $filtered_products[0]);
+        $accery_html = '';
+        if ($addons['accessories']) {
+            $accver =  $addons['accessories'];
+            foreach ($accver as $v) {
+                $accer = pr_accessoriesss($v['product']);
+                $accery_html .= $accer;
+            }
         }
+        $html = '<p>' . get_field('product_small_description', $filtered_products[0]) . '</p>';
+        // 
+        $pro_url = get_permalink($filtered_products[0]);
+
+        // restore_current_blog();
+        $accord_result = [
+            'accordion' => $accord,
+            'video' => $accord_v,
+            'thumbnail' => $thumbnail,
+            'title' => $title,
+            'size' => $size,
+            'accer' => $accery_html,
+            'html' => $html,
+            'pro_url' => $pro_url,
+            'product_id' => $product_ids,
+            'rigid' => $rigidproducts,
+            'flex' => $flexproducts,
+            'zeroflex' => $zeroflexproducts,
+            'filteredarray' => $filtered_products
+        ];
+
+        echo json_encode($accord_result);
     }
-    $html = '<p>' . get_field('product_small_description', $filtered_products[0]) . '</p>';
-    // 
-    $pro_url = get_permalink($filtered_products[0]);
-
-    restore_current_blog();
-    $accord_result = [
-        'accordion' => $accord,
-        'video' => $accord_v,
-        'thumbnail' => $thumbnail,
-        'title' => $title,
-        'size' => $size,
-        'accer' => $accery_html,
-        'html' => $html,
-        'pro_url' => $pro_url,
-        'product_id' => $product_ids
-    ];
-
-    echo json_encode($accord_result);
     wp_die(); // Required to terminate immediately and return a proper response
 }
 
@@ -1283,7 +1309,6 @@ function pr_accessoriesss(array $accessories)
 function addtocart()
 {
 
-    switch_to_blog(2);
 
     // Check if WooCommerce is active
     if (!class_exists('WooCommerce')) {
@@ -1298,10 +1323,6 @@ function addtocart()
     if (!$product_id) {
         wp_send_json_error(array('message' => 'Invalid product ID.'));
     }
-    $cart_count_before = WC()->cart->get_cart_contents_count();
-
-
-
 
     // Output result
     // Switch to the blog where the product is located (e.g., blog ID 2)
@@ -1310,7 +1331,7 @@ function addtocart()
 
     // Ensure the product was found on the other blog
     if (!$product) {
-        wp_send_json_error(array('message' => 'Product not found on the specified blog.', 'product_id' => $product_id, 'cart_count' => get_current_blog_id()));
+        wp_send_json_error(array('message' => 'Product not found on the specified blog.', 'product_id' => $product_id));
     }
 
     // Now add the product to the cart in the current WooCommerce context
@@ -1321,12 +1342,10 @@ function addtocart()
         wp_send_json_success(array(
             'message' => 'Product added to cart!',
             'minicart' => $updatedmincart,
-            'cart_count' =>  get_current_blog_id()
         ));
     } else {
-        wp_send_json_error(array('message' => 'Failed to add product to cart.', 'cart_count' => $after - $cart_count_before));
+        wp_send_json_error(array('message' => 'Failed to add product to cart.'));
     }
-        restore_current_blog(); // Switch back to the original blog
 
     die();
     // restore_current_blog(); // Switch back to the original blog
@@ -1343,7 +1362,8 @@ function getupdatedminicart()
 
 // redirect to a differnet page
 add_action('template_redirect', 'redirect_to_custom_page_after_cart_update');
-function redirect_to_custom_page_after_cart_update() {
+function redirect_to_custom_page_after_cart_update()
+{
     // Check if the cart is being updated
     if (is_cart() && !empty($_POST['update_cart'])) {
         // Set the URL to the WordPress page you want to redirect to

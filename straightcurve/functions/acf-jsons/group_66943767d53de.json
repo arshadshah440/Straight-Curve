@@ -78,6 +78,13 @@
                 "operator": "==",
                 "value": "templates\/LandscapeTemplate.php"
             }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates\/QuotePage.php"
+            }
         ]
     ],
     "menu_order": 0,
@@ -89,5 +96,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1722270130
+    "modified": 1725292023
 }

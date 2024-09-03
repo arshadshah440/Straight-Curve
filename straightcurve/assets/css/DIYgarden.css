@@ -1,5 +1,5 @@
 #homeaccordiana_ar .subheading b {
-  font-weight: 600;
+  font-weight: 700;
 }
 .owl-stage-outer {
   overflow: visible;
@@ -38,6 +38,10 @@
 }
 .max_width_514_ar {
   max-width: 514px;
+  margin: auto;
+}
+.max_width_455_ar{
+  max-width: 455px;
   margin: auto;
 }
 .mb_15_ar {
@@ -880,7 +884,7 @@ div#diy_garden_edging_wild_section {
   font-family: var(--gibson-regular);
   font-size: var(--font-size-16);
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 24px;
   margin-bottom: 5px;
 }
@@ -893,6 +897,7 @@ div#diy_garden_edging_wild_section {
   -webkit-box-shadow: none !important;
   border-width: 0px 1px 0px 0px !important;
   font-size: 14px;
+  border-radius: 10px;
 }
 .numberof_sets_ar {
   width: calc(327px - 182px);
@@ -909,7 +914,7 @@ div#diy_garden_edging_wild_section {
   color: var(--black-black-40);
   margin-bottom: 0px;
 }
-#moreaccesspries_ar p{
+#moreaccesspries_ar p {
   font-size: var(--font-size-14);
   font-family: var(--arial-fonts);
   font-weight: 400;
@@ -917,6 +922,9 @@ div#diy_garden_edging_wild_section {
   letter-spacing: 0.2px;
   color: var(--black-black-60);
   margin-bottom: 0px;
+}
+#moreaccesspries_ar p a{
+  text-decoration: underline;
 }
 #moreaccesspries_ar {
   margin-top: 22px;
@@ -997,17 +1005,33 @@ div#diy_garden_edging_wild_section {
 /***** accessories section *****/
 .accessroies_tabs_wrapper {
   border-radius: 30px;
-  border: 1px solid var(--primary-primary-10);
-  background: var(--white-white-100);
-  box-shadow: 0px 10px 10px 0px var(--primary-primary-5);
   max-width: 1216px;
-  padding: 30px;
   margin: auto;
 }
 .product_acc_in_wrapper_ar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 20px;
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 40px;
+}
+.product_acc_in_wrapper_ar::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+  border-radius: 10px;
+  background: var(--black-black-10, #0000001A);
+
+}
+
+.product_acc_in_wrapper_ar::-webkit-scrollbar {
+  width: 12px;
+  background: var(--black-black-10, #0000001A);
+}
+
+.product_acc_in_wrapper_ar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+  background: var(--black-black-20, #00000033);
 }
 .product_acc_in_wrapper_ar img {
   transition: transform 0.5s ease, filter 0.5s ease;
@@ -1017,8 +1041,82 @@ div#diy_garden_edging_wild_section {
   filter: brightness(0.8);
 }
 .acc_loop_wrapper_ar {
-  max-width: 290px;
+  max-width: 392px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 10px;
+}
+.acc_loop_content p {
+  font-family: var(--arial-fonts);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: var(--black-black-60);
+  margin-top: 10px;
+}
+.addtocart_loop_ar {
+  margin-top: 20px;
+}
+.addtocart_loop_ar label {
+  display: none !important;
+}
+.addtocart_loop_ar form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+.addtocart_loop_ar .c-quantity,
+.addtocart_loop_ar .c-quantity__field {
+  width: 121px !important;
+}
+.addtocart_loop_ar .c-quantity {
+  background: var(--white-white-100, #ffffff);
+  border: 1px solid var(--primary-primary-10, #1b49321a);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.addtocart_loop_ar .c-quantity__field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.addtocart_loop_ar .c-quantity__field input {
+  padding: 0px !important;
+  background-color: transparent !important;
+  width: 50px;
+}
+.addtocart_loop_ar .c-quantity__action {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 0% !important;
+  background: transparent !important;
+  color: var(--black-100) !important;
+  font-size: 20px;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+}
+.addtocart_loop_ar button[type="submit"] {
+  border-radius: 10px !important;
+  background-color: var(--secondary-secondary-100) !important;
+  width: 211px;
+  height: 50px;
+  font-family: var(--raleway-fonts);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+  border: none;
   cursor: pointer;
+}
+.addtocart_loop_ar button[type="submit"]::after {
+  display: none;
 }
 #nf-field-187 {
   display: none;
@@ -1083,7 +1181,7 @@ div#diy_garden_edging_wild_section {
 .acc_loop_content p {
   color: var(--black-black-60);
   font-family: var(--arial-fonts);
-  font-size: var(--font-size-12);
+  font-size: var(--font-size-14);
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
@@ -1099,6 +1197,18 @@ div#diy_garden_edging_wild_section {
 }
 /* Media Queries */
 @media (max-width: 910px) {
+  .input_wrapper_ar_mi {
+    width: 100%;
+  }
+  .numberof_sets_ar {
+    width: calc(327px - 212px);
+  }
+  .size_inputwraper_ar {
+    flex-direction: column;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 15px;
+  }
   .p_image_wrapper img {
     height: 280px;
   }
@@ -1211,9 +1321,11 @@ div#diy_garden_edging_wild_section {
   }
   #diygardenedging .d_flex_gap_24 > :nth-child(3) {
     order: 2;
+    padding: 19px 0px;
   }
   #diygardenedging .d_flex_gap_24 > :nth-child(2) {
     order: 1;
+    width: 100%;
   }
   #diygardenedging .d_flex_gap_24 > :nth-child(1) {
     order: 3;
@@ -1231,6 +1343,7 @@ div#diy_garden_edging_wild_section {
   }
   .pdesc_ar_wrapper {
     border-radius: 10px;
+    width: 100%;
   }
   #tabs_find_edege_ar .accordian_ar_mi_head,
   #tabs_find_edege_ar .accordian_ar_mi:first-child .accordian_ar_mi_head {

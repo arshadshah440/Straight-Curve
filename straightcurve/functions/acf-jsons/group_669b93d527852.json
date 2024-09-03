@@ -156,6 +156,84 @@
             "min": "",
             "max": "",
             "return_format": "id"
+        },
+        {
+            "key": "field_66d723913935d",
+            "label": "Flex Garden Products",
+            "name": "flex_garden_products",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "product"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "id"
+        },
+        {
+            "key": "field_66d723c93935e",
+            "label": "Rigid Garden Products",
+            "name": "rigid_garden_products",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "product"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "id"
+        },
+        {
+            "key": "field_66d723dc3935f",
+            "label": "Zero Flex Garden Products",
+            "name": "zero_flex_garden_products",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "product"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "id"
         }
     ],
     "location": [
@@ -176,5 +254,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1722442238
+    "modified": 1725375474
 }

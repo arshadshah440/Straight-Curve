@@ -1,0 +1,82 @@
+{
+    "key": "group_66d6c8a5ca320",
+    "title": "Thank You Page",
+    "fields": [
+        {
+            "key": "field_66d6c8b2da646",
+            "label": "Thank You Page Title",
+            "name": "thank_you_page_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Thank You.",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_66d6c8ceda647",
+            "label": "Thank You Page Descriptiopn",
+            "name": "thank_you_page_descriptiopn",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Your download will start automatically in a moment. Keep an eye on your inbox as well, we will send you everything in the via email.",
+            "placeholder": "Your download will start automatically in a moment. Keep an eye on your inbox as well, we will send you everything in the via email.",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_66d6c8f7da648",
+            "label": "Thank You Page Form Shortcode",
+            "name": "thank_you_page_form_shortcode",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "[ninja_form id=13]",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates\/ThankYouTemplate.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1725352249
+}

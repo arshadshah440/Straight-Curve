@@ -189,29 +189,29 @@ jQuery(document).ready(function ($) {
 
   autoplayslider("#wildedgingslider", 2, 2, 1, false, 20, true);
 
-  //accesories selection on click
+  // accesories selection on click
   var activeHeadings_acc = "";
-  jQuery(".product_acc_in_wrapper_ar").on(
-    "click",
-    ".acc_loop_wrapper_ar",
-    function () {
-      if (jQuery(this).hasClass("active_accessr_diy_option")) {
-        jQuery(this).removeClass("active_accessr_diy_option");
-      } else {
-        jQuery(this).addClass("active_accessr_diy_option");
-      }
+  // jQuery(".product_acc_in_wrapper_ar").on(
+  //   "click",
+  //   ".acc_loop_wrapper_ar",
+  //   function () {
+  //     if (jQuery(this).hasClass("active_accessr_diy_option")) {
+  //       jQuery(this).removeClass("active_accessr_diy_option");
+  //     } else {
+  //       jQuery(this).addClass("active_accessr_diy_option");
+  //     }
 
-      // Initialize an empty array to store the heading texts
-      activeHeadings_acc = "";
-      // Iterate over each active element and get the heading text
-      jQuery(".acc_loop_wrapper_ar.active_accessr_diy_option").each(
-        function () {
-          var headingText = jQuery(this).find("h5").text(); // Assuming the heading is an h2 tag
-          activeHeadings_acc += headingText + ", ";
-        }
-      );
-    }
-  );
+  //     // Initialize an empty array to store the heading texts
+  //     activeHeadings_acc = "";
+  //     // Iterate over each active element and get the heading text
+  //     jQuery(".acc_loop_wrapper_ar.active_accessr_diy_option").each(
+  //       function () {
+  //         var headingText = jQuery(this).find("h5").text(); // Assuming the heading is an h2 tag
+  //         activeHeadings_acc += headingText + ", ";
+  //       }
+  //     );
+  //   }
+  // );
 
   // accordian js
   jQuery(".accordian_wrapper_ar").on(
@@ -310,14 +310,18 @@ jQuery(document).ready(function ($) {
     horiscroll("#footer_gallery_ar_mi", 4, 2, 1, 20, false, true, true, 0);
     horiscroll(".testimon_mi_ar", 2, 2, 1, 24, true, true, true, 0);
   }
-  jQuery("#mobile_nav_ar").on("click", ".mainmenulist li > a span", function (e) {
-    var $li = $(this).closest("li");
-    $(this).toggleClass("reotate_chev_180");
-    if ($li.find(".submenulist").length > 0) {
-      e.preventDefault(); // Prevent the default action if there is a submenu
-      $li.find(".submenulist").slideToggle(); // Toggle the visibility of the submenu
+  jQuery("#mobile_nav_ar").on(
+    "click",
+    ".mainmenulist li > a span",
+    function (e) {
+      var $li = $(this).closest("li");
+      $(this).toggleClass("reotate_chev_180");
+      if ($li.find(".submenulist").length > 0) {
+        e.preventDefault(); // Prevent the default action if there is a submenu
+        $li.find(".submenulist").slideToggle(); // Toggle the visibility of the submenu
+      }
     }
-  });
+  );
 
   jQuery("#mobile_menu_toggler_ar").on("click", function () {
     jQuery("#mobile_nav_ar").show();
@@ -329,66 +333,142 @@ jQuery(document).ready(function ($) {
     .find("#setcalc_button_ar")
     .on("click", function (e) {
       e.preventDefault();
-      jQuery(this).closest("form").trigger("submit");
-      console.log(jQuery(this).closest("form"));
-      jQuery("#nf-field-187").val(activeHeadings_acc);
+      console.log("clicked");
+      var productid = jQuery("#setcalc_button_ar").attr("prod_id");
+      var quantity = jQuery("#numberofsets_ar").text();
+
+      if (quantity > 0 && productid !== "") {
+        jQuery.ajax({
+          type: "POST",
+          url: "/au/wp-admin/admin-ajax.php",
+          data: {
+            action: "addtocart",
+            product_id: productid,
+            quantity: quantity,
+          },
+          success: function (response) {
+            if (response.success) {
+              jQuery("#notification_ar").find("#cross_icon_ar").hide();
+              jQuery("#notification_ar").find("#check_icon_ar").show();
+              jQuery("#notification_ar").find("p").text(response.data.message);
+
+              jQuery("#notification_ar").show();
+              setTimeout(function () {
+                jQuery("#notification_ar").hide();
+              }, 5000);
+              if (
+                response.data.minicart != undefined &&
+                response.data.minicart != null &&
+                response.data.minicart != ""
+              ) {
+                jQuery("#minicart_ar").html(response.data.minicart);
+              }
+            }
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      } else {
+        jQuery("#notification_ar")
+          .find("p")
+          .text("kindly select number of sets...");
+        jQuery("#notification_ar").find("#cross_icon_ar").show();
+        jQuery("#notification_ar").find("#check_icon_ar").hide();
+        jQuery("#notification_ar").show();
+        setTimeout(function () {
+          jQuery("#notification_ar").hide();
+        }, 5000);
+      }
     });
 
-  jQuery(".get_price_list_popup").on("click", function (e) {
+  jQuery(".get_price_list_popup a").on("click", function (e) {
     e.preventDefault();
     jQuery("#form-overlay-pricelist").show();
   });
   // DIY Form Details
-  
-jQuery("#findyouredging_ar").on("submit",'form',function(e){
-  e.preventDefault();
-  console.log("clicked");
-   var productid= jQuery("#setcalc_button_ar").attr("prod_id");
-   var quantity= jQuery("#numberofsets_ar").text();
 
-   if(quantity > 0 && productid !== ''){
-     jQuery.ajax({
-       type: "POST",
-       url: "/wp-admin/admin-ajax.php",
-       data: {
-         action: "addtocart",
-         product_id: productid,
-         quantity: quantity
-       },
-       success: function (response) {
-         console.log(response);
-         
-       },
-       error: function (error) {
-         console.log(error);
-       }
+  jQuery("#findyouredging_ar").on(
+    "submit",
+    ".form_side_ar_mi form",
+    function (e) {
+      e.preventDefault();
+      console.log("clicked");
+      var productid = jQuery("#setcalc_button_ar").attr("prod_id");
+      var quantity = jQuery("#numberofsets_ar").text();
 
-     })
-   }
-
-})
+      if (quantity > 0 && productid !== "") {
+        jQuery.ajax({
+          type: "POST",
+          url: "/au/wp-admin/admin-ajax.php",
+          data: {
+            action: "addtocart",
+            product_id: productid,
+            quantity: quantity,
+          },
+          success: function (response) {
+            if (response.success) {
+              jQuery("#notification_ar").find("#cross_icon_ar").hide();
+              jQuery("#notification_ar").find("#check_icon_ar").show();
+              jQuery("#notification_ar").find("p").text(response.data.message);
+              jQuery("#notification_ar").show();
+              setTimeout(function () {
+                jQuery("#notification_ar").hide();
+              }, 5000);
+              if (
+                response.data.minicart != undefined &&
+                response.data.minicart != null &&
+                response.data.minicart != ""
+              ) {
+                jQuery("#minicart_ar").html(response.data.minicart);
+              }
+            }
+          },
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      } else {
+        jQuery("#notification_ar")
+          .find("p")
+          .text("kindly select number of sets...");
+        jQuery("#notification_ar").find("#cross_icon_ar").show();
+        jQuery("#notification_ar").find("#check_icon_ar").hide();
+        jQuery("#notification_ar").show();
+        setTimeout(function () {
+          jQuery("#notification_ar").hide();
+        }, 5000);
+      }
+    }
+  );
 
   // diy calculator
-  
+
   jQuery("#setcalc_input_ar").on("change", function () {
-     var onesetlength=7.2;
-     var oneset=7;
-     var extrashort=0;
-     var value = jQuery(this).val();
-     var totalsets=parseInt(value/oneset);
-     jQuery("#numberofsets_ar").text(totalsets);
+    var onesetlength = 7.2;
+    var oneset = 7;
+    var extrashort = 0;
+    var value = jQuery(this).val();
+    var totalsets = parseInt(value / oneset);
+    jQuery("#numberofsets_ar").text(totalsets);
 
-     if(totalsets > 0){
-       extrashort=(totalsets*onesetlength)-value;
-     }
+    if (totalsets > 0) {
+      extrashort = totalsets * onesetlength - value;
+    }
 
-     if(extrashort < 0){
-       jQuery("#text_inform_ar").html(`We've  added ${totalsets*onesetlength}m to your cart, we recommend you add filler packs to make up the difference (${extrashort.toFixed(1)})`);
-     }else{
-      jQuery("#text_inform_ar").html('');
-     }
-     console.log(extrashort.toFixed(1));
-  })
+    if (extrashort < 0) {
+      jQuery("#text_inform_ar").html(
+        `We've  added ${
+          totalsets * onesetlength
+        }m to your cart, we recommend you add filler packs to make up the difference (${extrashort.toFixed(
+          1
+        )})`
+      );
+    } else {
+      jQuery("#text_inform_ar").html("");
+    }
+    console.log(extrashort.toFixed(1));
+  });
 
   jQuery(".input_wrapper_ar_mi")
     .find("input[type='radio']")
@@ -419,7 +499,7 @@ jQuery("#findyouredging_ar").on("submit",'form',function(e){
 
       jQuery.ajax({
         type: "POST",
-        url: "/wp-admin/admin-ajax.php", // Using localized variable for AJAX URL
+        url: "/au/wp-admin/admin-ajax.php", // Using localized variable for AJAX URL
         data: {
           action: "showproductsar",
           stylevalue: stylevalue,
@@ -436,11 +516,13 @@ jQuery("#findyouredging_ar").on("submit",'form',function(e){
           jQuery(".video_file_ar").html(parsedData.video);
           jQuery(".p_image_wrapper img").attr("src", parsedData.thumbnail);
           jQuery(".pdesc_ar_wrapper h3.p_title_ar").html(parsedData.title);
-          jQuery(".pdesc_ar_wrapper p.edge_size_ar").html(`Edge Size : ${parsedData.size}`);
+          jQuery(".pdesc_ar_wrapper p.edge_size_ar").html(
+            `Edge Size : ${parsedData.size}`
+          );
           jQuery("#setcalc_button_ar").attr("prod_id", parsedData.product_id);
           if (parsedData.accer == "" || parsedData.accer == null) {
             jQuery(".accessroies_tabs_wrapper").hide();
-            jQuery(".product_acc_in_wrapper_ar").html('');
+            jQuery(".product_acc_in_wrapper_ar").html("");
             jQuery("#moreaccesspries_ar").hide();
           } else {
             jQuery(".product_acc_in_wrapper_ar").html(parsedData.accer);
@@ -491,18 +573,146 @@ jQuery(document).scroll(function () {
   }
 });
 
-
 jQuery(function ($) {
   "use strict";
   $(".ourrange_slider_ar .slide img").click(function () {
-    console.log('sdcdscds');
-      var $src = $(this).attr("src");
-      $(".show_slide_img").fadeIn();
-      $(".img-show_slide img").attr("src", $src);
+    console.log("sdcdscds");
+    var $src = $(this).attr("src");
+    $(".show_slide_img").fadeIn();
+    $(".img-show_slide img").attr("src", $src);
   });
-  
+
   $("span, .overlay").click(function () {
-      $(".show_slide_img").fadeOut();
+    $(".show_slide_img").fadeOut();
   });
-  
 });
+
+jQuery("#findyouredging_ar").on(
+  "click",
+  ".addtocart_loop_ar button[type='submit']",
+  function (e) {
+    e.preventDefault();
+    console.log("clicked");
+    var quantity = jQuery(this).siblings(".c-quantity").find("input").val();
+    var productid = jQuery(this).attr("value");
+    if (quantity > 0 && productid !== "") {
+      jQuery.ajax({
+        type: "POST",
+        url: "/au/wp-admin/admin-ajax.php",
+        data: {
+          action: "addtocart",
+          product_id: productid,
+          quantity: quantity,
+        },
+        success: function (data) {
+          if (data.success) {
+            jQuery("#notification_ar").find("#cross_icon_ar").hide();
+            jQuery("#notification_ar").find("#check_icon_ar").show();
+            jQuery("#notification_ar").find("p").text(data.data.message);
+            jQuery("#notification_ar").show();
+            setTimeout(function () {
+              jQuery("#notification_ar").hide();
+            }, 5000);
+            if (
+              data.data.minicart != undefined &&
+              data.data.minicart != null &&
+              data.data.minicart != ""
+            ) {
+              jQuery("#minicart_ar").html(data.data.minicart);
+            }
+          }
+        },
+        error: function (error) {
+          console.log(error);
+        },
+      });
+    } else {
+      jQuery("#notification_ar")
+        .find("p")
+        .text("kindly select number of sets...");
+
+      jQuery("#notification_ar").find("#cross_icon_ar").show();
+      jQuery("#notification_ar").find("#check_icon_ar").hide();
+      jQuery("#notification_ar").show();
+      setTimeout(function () {
+        jQuery("#notification_ar").hide();
+      }, 5000);
+    }
+  }
+);
+
+jQuery("#notification_ar").on("click", ".close_icon_ar", function () {
+  jQuery("#notification_ar").hide();
+});
+jQuery("#header").on("click", ".str-cart-cross-icon-am", function () {
+  jQuery(".str-cart-section-am").hide();
+});
+jQuery("#header").on("click", ".mini_cart_ar", function () {
+  jQuery(".str-cart-section-am").show();
+});
+jQuery("#header").on("click", "#update_cart_ar", function () {
+  jQuery("#minicart_ar").find('button[name="update_cart"]').trigger("click");
+});
+
+jQuery(function ($) {
+  // Listen for the mini-cart update event
+  $(document.body).on("added_to_cart updated_wc_div", function () {
+    // Redirect to the desired page URL
+    window.location.href = "/au/quote"; // Replace '/au/quote' with your desired page slug
+  });
+});
+
+jQuery("#submit_quote_ar").on("click", function (e) {
+  var username = jQuery("#str-first-name-am").val();
+  var email = jQuery("#str-email-am").val();
+  var postalcode = jQuery("#str-postal-code-am").val();
+  var suburb = jQuery("#str-suburb-am").val();
+  var profession = jQuery("#str-country-am").val();
+  var products = [];
+  jQuery(".str-quote-order-content-am").each(function () {
+    var itemname = jQuery(this).find(".str-qoute-order-name-am > p").text();
+    var quantity = jQuery(this).find("input[type='number']").val();
+    products.push({ itemname: itemname, quantity: quantity });
+  });
+
+  if (
+    username == "" ||
+    email == "" ||
+    postalcode == "" ||
+    suburb == "" ||
+    profession == "" ||
+    products.length == 0
+  ) {
+    alert("Please fill all the fields and select at least one product.");
+  } else {
+    jQuery("#customer_name_ar").text(username);
+    jQuery("#pdf_wrapper_ar").show();
+    html2pdf(jQuery("#pdf_wrapper_ar").html());
+    jQuery("#pdf_wrapper_ar").hide();
+
+
+    jQuery.ajax({
+      type: "POST",
+      url: "/au/wp-admin/admin-ajax.php",
+      data: {
+        action: "submit_quote",
+        username: username,
+        email: email,
+        postalcode: postalcode,
+        suburb: suburb,
+        profession: profession,
+        products: products,
+      },
+      success: function (data) {
+        if (data.success) {
+          window.location.href = data.data.redirect;
+        }
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  }
+});
+
+

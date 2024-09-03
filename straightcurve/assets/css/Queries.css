@@ -580,6 +580,7 @@
 
     header#header .container_ar_mi nav {
         padding: 5px 0px;
+        gap: 10px;
     }
 
     #header .netsites_ar {

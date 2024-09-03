@@ -34,6 +34,22 @@ $currentpage = get_the_ID();
         </div>
     </div>
 </div>
+<div class="notification_ar" id="notification_ar">
+    <div class="notification_ar_inner">
+        <div class="d_flex_icon_message_ar">
+            <div class="icons_ar_mi">
+                <i class="fa-solid fa-circle-check" id="check_icon_ar"></i>
+                <i class="fa-solid fa-circle-xmark" id="cross_icon_ar"></i>
+            </div>
+            <div class="message_ar_mi">
+                <p>Product added to quote!!!</p>
+            </div>
+            <div class="close_icon_ar">
+                <i class="fa-solid fa-xmark" id="close_icon_ar"></i>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="videoPopup" class="home_hero_video_popup">
     <div class="popup-content">
         <div class="popup-content-inner">
@@ -54,7 +70,7 @@ $currentpage = get_the_ID();
     <div class="container_ar_mi">
         <div class="findedging_ar">
             <h2 class="text_align_center_ar"><?php echo get_field('find_your_edging_heading'); ?></h2>
-            <div class="edgedesc sect_desc_ar_mi_diy max_width_514_ar">
+            <div class="edgedesc sect_desc_ar_mi_diy max_width_455_ar">
                 <p class="text_align_center_ar"><?php echo get_field('find_your_edging_subheading'); ?></p>
             </div>
         </div>
@@ -109,7 +125,7 @@ $currentpage = get_the_ID();
                 $tabskey = str_replace(" ", "", $tabheading);
                 $tabskey = strtolower($tabskey);
                 if ($tabskey == $key) {
-                    ?>
+                ?>
                     <div class="pr_small_desc_ar">
                         <p><?php echo $shortdesc; ?></p>
                     </div>
@@ -137,9 +153,8 @@ $currentpage = get_the_ID();
                                 </div>
                             <?php } ?>
                         </div>
-                    <?php }
+                <?php }
                 }
-
             }
 
             function render_radio_buttons($arr, $name, $key, $current_value, $currentpage, $type, $inputclass)
@@ -206,7 +221,7 @@ $currentpage = get_the_ID();
                                                 <h6>Meters</h6>
                                                 <div class="input_wrapper_ar_mi">
                                                     <div class="inputcalc_ar">
-                                                    <input type="number" step="any" name="setcalc_input_ar" id="setcalc_input_ar" class="setcalc_input_ar" placeholder="Enter meters required">
+                                                        <input type="number" step="any" name="setcalc_input_ar" id="setcalc_input_ar" class="setcalc_input_ar" placeholder="Enter meters required">
                                                     </div>
                                                     <div class="numberof_sets_ar">
                                                         <h6><span id="numberofsets_ar">0</span> Sets</h6>
@@ -245,7 +260,7 @@ $currentpage = get_the_ID();
                     </div>
 
                 </div>
-                <?php
+            <?php
             }
 
             $counters = 0;
@@ -294,22 +309,22 @@ $currentpage = get_the_ID();
                 </div>
                 <?php
                 if (have_rows('off_the_shelf_products_bullets')) {
-                    ?>
+                ?>
                     <div class="diy_trythempoints_ar">
                         <?php
                         while (have_rows('off_the_shelf_products_bullets')) {
                             the_row();
                             $heading = get_sub_field('products_bullets_text');
-                            ?>
+                        ?>
                             <div class="diy_trythempoints">
                                 <?php include get_template_directory() . '/assets/img/fi-rr-add.svg' ?>
                                 <p><?php echo $heading; ?></p>
                             </div>
 
-                            <?php
+                        <?php
                         } ?>
                     </div>
-                    <?php
+                <?php
                 } ?>
             </div>
             <div class="diy_why_choose_section_left_button showon_mobile_ar">
@@ -397,7 +412,7 @@ $currentpage = get_the_ID();
             <div class="diy_feature_comparison_section_inner_table">
                 <?php
                 if (have_rows('table_rows_content') && have_rows('table_column_heading')) {
-                    ?>
+                ?>
                     <div class="compare_table_ar">
                         <div class="compoare_table_header_ar comparetable_row_ar">
 
@@ -409,9 +424,9 @@ $currentpage = get_the_ID();
 
                                 <?php while (have_rows('table_column_heading')) {
                                     the_row();
-                                    ?>
+                                ?>
                                     <div class="compare_options_ar"><?php the_sub_field('heading_text'); ?></div>
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </div>
@@ -423,7 +438,7 @@ $currentpage = get_the_ID();
                             while (have_rows('table_rows_content')) {
                                 the_row();
                                 $heading = get_sub_field('table_row_heading');
-                                ?>
+                            ?>
                                 <div class="comparetale_row_body_ar comparetable_row_ar">
 
                                     <div class="compare_left_title_ar">
@@ -446,7 +461,7 @@ $currentpage = get_the_ID();
                                         $value = get_sub_field($field);
                                         $arrayin = [$field => $value,];
                                         array_push($arrayinf, $arrayin);
-                                        ?>
+                                    ?>
 
                                         <?php if ($value): ?>
                                             <div class="compare_options_ar">
@@ -460,21 +475,21 @@ $currentpage = get_the_ID();
                                             </div>
                                         <?php endif; ?>
 
-                                        <?php
+                                    <?php
                                     }
                                     $mainrow = ['rowtitle' => $heading, 'rowdata' => $arrayinf];
                                     array_push($tablerowheadings, $mainrow);
                                     ?>
 
                                 </div>
-                                <?php
+                            <?php
                             }
                             ?>
 
                         </div>
                     </div>
 
-                    <?php
+                <?php
                 } ?>
 
             </div>
@@ -485,7 +500,7 @@ $currentpage = get_the_ID();
                 for ($i = 0; $i < $size; $i++) {
                     $firstRowdata = $tablerowheadings[$i]['rowdata'][$i]; // Gets the first element of 'rowdata'
                     $firstKey = array_key_first($firstRowdata);
-                    ?>
+                ?>
                     <div class="rows_table_mobile">
                         <div class="row_head_mobile">
                             <h6><?php echo str_replace('_', ' ', $firstKey); ?></h6>
@@ -495,11 +510,11 @@ $currentpage = get_the_ID();
 
                             <?php
                             foreach ($tablerowheadings as $headingsa) {
-                                ?>
+                            ?>
                                 <div class="eachdata">
                                     <div class="rowtitle"><?php echo $headingsa['rowtitle']; ?></div>
                                     <div class="rowdata"><?php if ($headingsa['rowdata'][$i][$firstKey]) {
-                                        ?>
+                                                            ?>
                                             <span
                                                 class="icon-tick"><?php include get_template_directory() . '/assets/img/mdi_tick.svg' ?></span>
                                         <?php } else {
@@ -507,17 +522,17 @@ $currentpage = get_the_ID();
                                             <span
                                                 class="icon-cross"><?php include get_template_directory() . '/assets/img/gridicons_cross.svg' ?></span>
 
-                                            <?php
-                                    }
-                                    ?>
+                                        <?php
+                                                            }
+                                        ?>
                                     </div>
                                 </div>
-                                <?php
+                            <?php
                             }
                             ?>
                         </div>
                     </div>
-                    <?php
+                <?php
                 }
                 ?>
 
@@ -543,14 +558,14 @@ $currentpage = get_the_ID();
             <div class="diy_garden_edging_wild_section_slider">
                 <?php
                 if (have_rows('garden_edging_wild_slider_container_box')) {
-                    ?>
+                ?>
                     <div class="owl-carousel" id="wildedgingslider">
 
 
                         <?php
                         while (have_rows('garden_edging_wild_slider_container_box')) {
                             the_row();
-                            ?>
+                        ?>
                             <div class="diy_garden_edging_wild_section_flex">
                                 <div class="diy_garden_edging_wild_section_flex_left">
                                     <div class="diy_garden_edging_wild_section_flex_left_heading">
@@ -586,7 +601,7 @@ $currentpage = get_the_ID();
                     <div class="tabs_controls_ar">
                         <div class="filled_tabs_ar"></div>
                     </div>
-                    <?php
+                <?php
                 } ?>
             </div>
         </div>
@@ -640,7 +655,7 @@ $currentpage = get_the_ID();
                 if (have_rows('straightcurve_promises_box')) {
                     while (have_rows('straightcurve_promises_box')) {
                         the_row();
-                        ?>
+                ?>
                         <div class="diy_straightcurve_promises_section_flex_card">
                             <div class="diy_straightcurve_promises_section_flex_card_image">
                                 <img src="<?php echo get_sub_field('box_image'); ?>" alt="Straightcurve Promises Section Image">
@@ -652,7 +667,7 @@ $currentpage = get_the_ID();
                                 <p><?php echo get_sub_field('box_description'); ?></p>
                             </div>
                         </div>
-                    <?php }
+                <?php }
                 } ?>
             </div>
 
@@ -671,7 +686,7 @@ $currentpage = get_the_ID();
         </div>
         <?php
         if (have_rows('homepage_accordian')) {
-            ?>
+        ?>
             <div class="accordian_wrapper_ar">
 
                 <?php
@@ -679,7 +694,7 @@ $currentpage = get_the_ID();
                     the_row();
                     $question = get_sub_field('homepage_accordian_heading');
                     $answer = get_sub_field('homepage_accordian_description');
-                    ?>
+                ?>
                     <div class="accordian_ar_mi">
                         <div class="accordian_ar_mi_head">
                             <h5><?php echo $question; ?></h5>
@@ -694,11 +709,11 @@ $currentpage = get_the_ID();
                             <?php echo $answer; ?>
                         </div>
                     </div>
-                    <?php
+                <?php
                 }
                 ?>
             </div>
-            <?php
+        <?php
         }
 
         ?>

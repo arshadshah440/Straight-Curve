@@ -55,7 +55,7 @@ $cartitems = WC()->cart->get_cart();
                 </div>
             </div>
         </div>
-        <div class="str-quote-section-am">
+        <div class="str-quote-section-am" id="quotepage_cart_wrapper_ar">
             <h3 class="str-quote-title-am">Your Quote</h3>
             <div class="str-quote-content-am">
                 <div class="str-quote-order-am">
@@ -86,7 +86,7 @@ $cartitems = WC()->cart->get_cart();
                                     $remove_url = esc_url(wc_get_cart_remove_url($cart_item_key));
                                     $removebtnur = get_template_directory_uri() . '/assets/img/Vector (33).svg';
                                     $remove_button = sprintf(
-                                        '<a href="%s" class="str-qoute-order-delete-icon-am remove" aria-label="%s" data-product_id="%s" data-product_sku="%s"><img src="' . $removebtnur . '" alt="delete"></a>',
+                                        '<a href="%s" class="str-qoute-order-delete-icon-am remove remove_from_cart_ar" aria-label="%s" data-product_id="%s" data-product_sku="%s"><img src="' . $removebtnur . '" alt="delete"></a>',
                                         $remove_url,
                                         __('Remove this item', 'woocommerce'),
                                         esc_attr($product_id),
@@ -128,7 +128,7 @@ $cartitems = WC()->cart->get_cart();
                         <?php endif; ?>
                         <div class="str-qoute-order-privacy-am">
                             <p>Your data will process your order and enhance your experience; details are in the <a
-                                    href="">Privacy Policy</a></p>
+                                    href="<?php echo get_field('privacy_policy_url','options');?>">Privacy Policy</a></p>
                         </div>
                         <div class="str-qoute-order-notice-am">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/Vector (30).svg" alt="exclamation mark">
@@ -140,7 +140,7 @@ $cartitems = WC()->cart->get_cart();
                 </div>
                 <div class="str-qoute-order-btns-am">
                     <a href="https://strcurvestage.wpengine.com/au/diy-garden-edging/"> <button class="str-qoute-order-addmore-btn-am" type="button">Add More</button> </a>
-                    <button class="str-qoute-order-submit-btn-am" type="submit" id="submit_quote_ar">Submit</button>
+                    <button class="str-qoute-order-submit-btn-am <?php echo (count($cartitems) > 0) ? '' : 'disabledbtn_ar'; ?>" type="submit" id="submit_quote_ar">Submit</button>
                 </div>
             </div>
 

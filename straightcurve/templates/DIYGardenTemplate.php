@@ -219,14 +219,20 @@ $currentpage = get_the_ID();
                                             </div>
                                             <div class="size_inputwraper_ar setcalculator_ar">
                                                 <h6>Meters</h6>
-                                                <div class="input_wrapper_ar_mi">
-                                                    <div class="inputcalc_ar">
-                                                        <input type="number" step="any" name="setcalc_input_ar" id="setcalc_input_ar" class="setcalc_input_ar" placeholder="Enter meters required">
-                                                    </div>
-                                                    <div class="numberof_sets_ar">
-                                                        <h6><span id="numberofsets_ar">0</span> Sets</h6>
+                                                <div class="input_wraper_witherror">
+                                                    <div class="input_wrapper_ar_mi">
+                                                        <div class="inputcalc_ar">
+                                                            <input type="number" step="any" name="setcalc_input_ar" id="setcalc_input_ar" class="setcalc_input_ar" placeholder="Enter meters required">
+                                                        </div>
+                                                        <div class="numberof_sets_ar">
+                                                            <h6><span id="numberofsets_ar">0</span> Sets</h6>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                            </div>                 
+
+                                            <div class="stock_error_ar" id="stock_error_ar">
+                                                <p id="error_ar"><img src="<?php echo get_template_directory_uri() . '/assets/img/Info.svg' ?>" alt=""><span id="stock_erro_ar"></span></p>
                                             </div>
                                             <div class="text_inform_ar">
                                                 <p id="text_inform_ar"><?php echo get_field('product_small_description', $currentid); ?>

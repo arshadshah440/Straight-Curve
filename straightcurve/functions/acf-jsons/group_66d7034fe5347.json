@@ -123,6 +123,22 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "field_66d9c971893bf",
+            "label": "Privacy Policy Url",
+            "name": "privacy_policy_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https:\/\/straightcurve.com\/au\/privacy-policy\/",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -143,5 +159,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1725367422
+    "modified": 1725548941
 }

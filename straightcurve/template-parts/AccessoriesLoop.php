@@ -30,6 +30,11 @@ $product = wc_get_product($productid);
         </a>
         <p><?php echo esc_html($smaldesc); ?></p>
         <div class="addtocart_loop_ar">
+            <div class="stock_error_ar" bis_skin_checked="1" >
+                <p id="error_ar"><img src="<?php echo get_template_directory_uri();?>/assets/img/Info.svg" alt=""><span id="stock_erro_ar">Only 182 sets are available.
+
+</span></p>
+            </div>
             <?php if ($product && $product->is_purchasable() && $product->is_in_stock()) : ?>
                 <form class="cart" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post" enctype='multipart/form-data' data-redirect="false">
                     <?php woocommerce_quantity_input(); ?>

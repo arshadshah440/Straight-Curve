@@ -351,7 +351,7 @@ jQuery(document).ready(function ($) {
               jQuery("#notification_ar").find("#cross_icon_ar").hide();
               jQuery("#notification_ar").find("#check_icon_ar").show();
               jQuery("#notification_ar").find("p").text(response.data.message);
-
+              jQuery("#stock_error_ar").hide();
               jQuery("#notification_ar").show();
               setTimeout(function () {
                 jQuery("#notification_ar").hide();
@@ -363,6 +363,12 @@ jQuery(document).ready(function ($) {
               ) {
                 jQuery("#minicart_ar").html(response.data.minicart);
               }
+            } else {
+              console.log(response.data.message);
+              // jQuery("#notification_ar").find("#cross_icon_ar").show();
+              // jQuery("#notification_ar").find("#check_icon_ar").hide();
+              jQuery("#error_ar").find("span").text(response.data.message);
+              jQuery("#stock_error_ar").show();
             }
           },
           error: function (error) {
@@ -370,15 +376,10 @@ jQuery(document).ready(function ($) {
           },
         });
       } else {
-        jQuery("#notification_ar")
-          .find("p")
-          .text("kindly select number of sets...");
-        jQuery("#notification_ar").find("#cross_icon_ar").show();
-        jQuery("#notification_ar").find("#check_icon_ar").hide();
-        jQuery("#notification_ar").show();
-        setTimeout(function () {
-          jQuery("#notification_ar").hide();
-        }, 5000);
+        jQuery("#error_ar")
+          .find("span")
+          .text(" kindly select number of sets...");
+        jQuery("#stock_error_ar").show();
       }
     });
 
@@ -422,6 +423,10 @@ jQuery(document).ready(function ($) {
               ) {
                 jQuery("#minicart_ar").html(response.data.minicart);
               }
+            } else {
+              console.log(response.data.message);
+              jQuery("#error_ar").find("span").text(response.data.message);
+              jQuery("#stock_error_ar").show();
             }
           },
           error: function (error) {
@@ -444,11 +449,17 @@ jQuery(document).ready(function ($) {
 
   // diy calculator
 
-  jQuery("#setcalc_input_ar").on("change", function () {
+  jQuery("#setcalc_input_ar").on("change input", function () {
+    var value = jQuery(this).val();
+    jQuery("#stock_error_ar").hide();
+    calculatorset(value);
+  });
+
+  function calculatorset(val) {
     var onesetlength = 7.2;
     var oneset = 7;
     var extrashort = 0;
-    var value = jQuery(this).val();
+    var value = val;
     var totalsets = parseInt(value / oneset);
     jQuery("#numberofsets_ar").text(totalsets);
 
@@ -467,8 +478,7 @@ jQuery(document).ready(function ($) {
     } else {
       jQuery("#text_inform_ar").html("");
     }
-    console.log(extrashort.toFixed(1));
-  });
+  }
 
   jQuery(".input_wrapper_ar_mi")
     .find("input[type='radio']")
@@ -496,6 +506,7 @@ jQuery(document).ready(function ($) {
         .closest("form")
         .find("input.size_input_ar:checked")
         .attr("current-type");
+        jQuery("#stock_error_ar").hide();
 
       jQuery.ajax({
         type: "POST",
@@ -511,6 +522,8 @@ jQuery(document).ready(function ($) {
         },
         success: function (data) {
           var parsedData = JSON.parse(data);
+
+          var setval = jQuery("#setcalc_input_ar").val();
 
           jQuery(".accordian_wrapper_ar").html(parsedData.accordion);
           jQuery(".video_file_ar").html(parsedData.video);
@@ -529,9 +542,19 @@ jQuery(document).ready(function ($) {
             jQuery(".accessroies_tabs_wrapper").show();
             jQuery("#moreaccesspries_ar").show();
           }
-          jQuery(".pdesc_ar_wrapper .text_inform_ar p").html(parsedData.html);
+          if (parsedData.product_id == 0) {
+            jQuery("#setcalc_button_ar").addClass("disabledbtn_ar");
+          } else {
+            jQuery("#setcalc_button_ar").removeClass("disabledbtn_ar");
+          }
+          if (setval > 0) {
+            calculatorset(setval);
+          } else {
+            jQuery(".pdesc_ar_wrapper .text_inform_ar p").html(parsedData.html);
+          }
           jQuery("#nf-field-186").val(parsedData.title);
           jQuery("#nf-field-185").val(parsedData.pro_url);
+
           activeHeadings_acc = "";
         },
         error: function (error) {
@@ -593,6 +616,7 @@ jQuery("#findyouredging_ar").on(
   function (e) {
     e.preventDefault();
     console.log("clicked");
+    var currentcart=jQuery(this).closest(".addtocart_loop_ar");
     var quantity = jQuery(this).siblings(".c-quantity").find("input").val();
     var productid = jQuery(this).attr("value");
     if (quantity > 0 && productid !== "") {
@@ -610,6 +634,8 @@ jQuery("#findyouredging_ar").on(
             jQuery("#notification_ar").find("#check_icon_ar").show();
             jQuery("#notification_ar").find("p").text(data.data.message);
             jQuery("#notification_ar").show();
+            currentcart.find(".stock_error_ar").css("opacity", "0");
+
             setTimeout(function () {
               jQuery("#notification_ar").hide();
             }, 5000);
@@ -620,6 +646,10 @@ jQuery("#findyouredging_ar").on(
             ) {
               jQuery("#minicart_ar").html(data.data.minicart);
             }
+          } else {
+            console.log(data.data.message);
+            currentcart.find(".stock_error_ar").find("span").text(data.data.message);
+            currentcart.find(".stock_error_ar").css("opacity", "1");
           }
         },
         error: function (error) {
@@ -685,27 +715,90 @@ jQuery("#submit_quote_ar").on("click", function (e) {
   ) {
     alert("Please fill all the fields and select at least one product.");
   } else {
-    jQuery("#customer_name_ar").text(username);
-    jQuery("#pdf_wrapper_ar").show();
-    html2pdf(jQuery("#pdf_wrapper_ar").html());
-    jQuery("#pdf_wrapper_ar").hide();
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    } else {
+      jQuery("#customer_name_ar").text(username);
+      jQuery("#pdf_wrapper_ar").show();
+      html2pdf(jQuery("#pdf_wrapper_ar").html());
+      jQuery("#pdf_wrapper_ar").hide();
 
-
+      jQuery.ajax({
+        type: "POST",
+        url: "/au/wp-admin/admin-ajax.php",
+        data: {
+          action: "submit_quote",
+          username: username,
+          email: email,
+          postalcode: postalcode,
+          suburb: suburb,
+          profession: profession,
+          products: products,
+        },
+        success: function (data) {
+          if (data.success) {
+            window.location.href = data.data.redirect;
+          }
+        },
+        error: function (error) {
+          console.log(error);
+        },
+      });
+    }
+  }
+});
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+jQuery("#minicart_ar").on("click", ".remove_from_cart_ar", function (e) {
+  e.preventDefault();
+  var productevent = jQuery(this);
+  var productid = jQuery(this).attr("data-product_id");
+  jQuery.ajax({
+    type: "POST",
+    url: "/au/wp-admin/admin-ajax.php",
+    data: {
+      action: "remove_from_cart",
+      product_id: productid,
+    },
+    success: function (data) {
+      if (data.success) {
+        productevent.closest(".str-cart-order-content-am").remove();
+      }
+    },
+    error: function (error) {
+      console.log(error);
+    },
+  });
+});
+jQuery("#quotepage_cart_wrapper_ar").on(
+  "click",
+  ".remove_from_cart_ar",
+  function (e) {
+    e.preventDefault();
+    var productevent = jQuery(this);
+    var productid = jQuery(this).attr("data-product_id");
     jQuery.ajax({
       type: "POST",
       url: "/au/wp-admin/admin-ajax.php",
       data: {
-        action: "submit_quote",
-        username: username,
-        email: email,
-        postalcode: postalcode,
-        suburb: suburb,
-        profession: profession,
-        products: products,
+        action: "remove_from_cart",
+        product_id: productid,
       },
       success: function (data) {
         if (data.success) {
-          window.location.href = data.data.redirect;
+          productevent.closest(".str-quote-order-content-am").remove();
+          if (
+            jQuery("#quotepage_cart_wrapper_ar").find(
+              ".str-quote-order-content-am"
+            ).length == 0
+          ) {
+            jQuery("#submit_quote_ar").addClass("disabledbtn_ar");
+          } else {
+            jQuery("#submit_quote_ar").removeClass("disabledbtn_ar");
+          }
         }
       },
       error: function (error) {
@@ -713,6 +806,4 @@ jQuery("#submit_quote_ar").on("click", function (e) {
       },
     });
   }
-});
-
-
+);

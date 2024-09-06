@@ -45,7 +45,7 @@ $current_site_name = get_bloginfo('name');
                                 $remove_url = esc_url(wc_get_cart_remove_url($cart_item_key));
                                 $removebtnur = get_template_directory_uri() . '/assets/img/Vector (33).svg';
                                 $remove_button = sprintf(
-                                    '<a href="%s" class="str-qoute-order-delete-icon-am remove" aria-label="%s" data-product_id="%s" data-product_sku="%s"><img src="' . $removebtnur . '" alt="delete"></a>',
+                                    '<a href="%s" class="str-qoute-order-delete-icon-am remove remove_from_cart_ar" aria-label="%s" data-product_id="%s" data-product_sku="%s"><img src="' . $removebtnur . '" alt="delete"></a>',
                                     $remove_url,
                                     __('Remove this item', 'woocommerce'),
                                     esc_attr($product_id),

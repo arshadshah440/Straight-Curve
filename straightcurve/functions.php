@@ -1159,6 +1159,7 @@ function showproductsar()
     if (count($filtered_products) == 0) {
         $accord_result = [
             'title' => "Product not found",
+            'product_id' => 0
         ];
 
         echo json_encode($accord_result);
@@ -1194,7 +1195,7 @@ function showproductsar()
             'accer' => $accery_html,
             'html' => $html,
             'pro_url' => $pro_url,
-            'product_id' => $product_ids,
+            'product_id' => $filtered_products[0],
             'rigid' => $rigidproducts,
             'flex' => $flexproducts,
             'zeroflex' => $zeroflexproducts,
@@ -1276,31 +1277,37 @@ function pr_accessoriesss(array $accessories)
 
     foreach ($accessories as $accessory) {
         $productid = $accessory;
-        $image = get_the_post_thumbnail_url($productid);
-        $title = get_the_title($productid);
-        $smaldesc = get_field('product_small_description', $productid);
-        $productinfo = get_field("product_info", $productid);
-        $finishing = $productinfo['finish'];
+        // $image = get_the_post_thumbnail_url($productid);
+        // $title = get_the_title($productid);
+        // $smaldesc = get_field('product_small_description', $productid);
+        // $productinfo = get_field("product_info", $productid);
+        // $finishing = $productinfo['finish'];
+
+        ob_start();
+
+        include get_template_directory() . '/template-parts/AccessoriesLoop.php';
+
+        $output .= ob_get_clean();
 
         // Concatenate HTML to the $output variable
-        $output .= '<div class="acc_loop_wrapper_ar">';
-        $output .= '    <div class="thumbnail_wrapper_ar">';
-        $output .= '        <div class="thumb_ar_loop">';
-        $output .= '            <img src="' . esc_url($image) . '" alt="Image">';
-        $output .= '        </div>';
-        $output .= '        <button>' . esc_html($finishing) . '</button>';
-        $output .= '    </div>';
-        $output .= '    <div class="acc_loop_content">';
-        $output .= '        <a href="' . esc_url(get_the_permalink($productid)) . '">';
-        $output .= '            <h5>' . esc_html($title) . '</h5>';
-        $output .= '        </a>';
-        $output .= '        <p>' . esc_html($smaldesc) . '</p>';
-        // Add the Add to Cart button
-        $output .= '        <div class="add_to_cart_button">';
-        $output .=              do_shortcode('[add_to_cart id="' . $productid . '"]');
-        $output .= '        </div>';
-        $output .= '    </div>';
-        $output .= '</div>';
+        // $output .= '<div class="acc_loop_wrapper_ar">';
+        // $output .= '    <div class="thumbnail_wrapper_ar">';
+        // $output .= '        <div class="thumb_ar_loop">';
+        // $output .= '            <img src="' . esc_url($image) . '" alt="Image">';
+        // $output .= '        </div>';
+        // $output .= '        <button>' . esc_html($finishing) . '</button>';
+        // $output .= '    </div>';
+        // $output .= '    <div class="acc_loop_content">';
+        // $output .= '        <a href="' . esc_url(get_the_permalink($productid)) . '">';
+        // $output .= '            <h5>' . esc_html($title) . '</h5>';
+        // $output .= '        </a>';
+        // $output .= '        <p>' . esc_html($smaldesc) . '</p>';
+        // // Add the Add to Cart button
+        // $output .= '        <div class="add_to_cart_button">';
+        // $output .=              do_shortcode('[add_to_cart id="' . $productid . '"]');
+        // $output .= '        </div>';
+        // $output .= '    </div>';
+        // $output .= '</div>';
     }
 
     return $output; // Output the accumulated HTML
@@ -1342,10 +1349,48 @@ function addtocart()
         wp_send_json_success(array(
             'message' => 'Product added to cart!',
             'minicart' => $updatedmincart,
+            'product' => $product,
+            'product_id' => $product_id,
+            'product_url' => get_the_permalink($product_id),
         ));
     } else {
-        wp_send_json_error(array('message' => 'Failed to add product to cart.'));
+        // Get WooCommerce notices and format them into a readable string
+        $notices = wc_get_notices('error');
+
+        // Initialize error message and stock error flag
+        $error_message = 'Failed to add product to cart.';
+        $is_stock_error = false;
+
+        if (!empty($notices)) {
+            foreach ($notices as $notice) {
+                // Check if the notice is stock-related
+                if (strpos($notice['notice'], 'out of stock') !== false || strpos($notice['notice'], 'not enough stock') !== false) {
+                    $is_stock_error = true; // Found a stock-related error
+
+                    // Get the available stock quantity
+                    $stock_quantity = wc_get_product($product_id)->get_stock_quantity();
+
+                    // Customize the error message to include stock information
+                    $error_message = sprintf(__('Only %d sets are available.'), $stock_quantity);
+                    break; // Exit loop once stock-related error is found
+                }
+            }
+
+            // If no stock-related error, combine all error notices into a single message
+            if (!$is_stock_error) {
+                $error_message = implode(' ', wp_list_pluck($notices, 'notice'));
+            }
+        }
+
+        wc_clear_notices(); // Clear notices to prevent them from displaying multiple times
+
+        // Send JSON response with stock error flag
+        wp_send_json_error(array(
+            'message' => $error_message,
+            'is_stock_error' => $is_stock_error,
+        ));
     }
+
 
     die();
     // restore_current_blog(); // Switch back to the original blog
@@ -1373,4 +1418,43 @@ function redirect_to_custom_page_after_cart_update()
             exit;
         }
     }
+};
+
+function remove_from_cart()
+{
+
+    if (!class_exists('WooCommerce')) {
+        wp_send_json_error(array('message' => 'WooCommerce is not active.'));
+    }
+
+    // Sanitize and validate the product ID.
+    $product_id = isset($_POST['product_id']) ? intval(sanitize_text_field($_POST['product_id'])) : 0;
+
+    if (!$product_id) {
+        wp_send_json_error(array('message' => 'Invalid product ID.'));
+    }
+
+    // Check if the product is in the cart and remove it
+    $cart = WC()->cart->get_cart();
+    $found = false;
+
+    foreach ($cart as $cart_item_key => $cart_item) {
+        if ($cart_item['product_id'] == $product_id) {
+            WC()->cart->remove_cart_item($cart_item_key);
+            $found = true;
+            break;
+        }
+    }
+
+    if (!$found) {
+        wp_send_json_error(array('message' => 'Product not found in the cart.'));
+    } else {
+        wp_send_json_success(array(
+            'message' => 'Product removed from cart!',
+        ));
+    }
+
+    die();
 }
+add_action('wp_ajax_remove_from_cart', 'remove_from_cart');
+add_action('wp_ajax_nopriv_remove_from_cart', 'remove_from_cart');

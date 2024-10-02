@@ -1433,7 +1433,7 @@ button.next {
   max-width: 606px;
   margin: auto;
 }
-.accordian_ar_mi_head h5 {
+.accordian_ar_mi_head h5,.accordian_ar_mi_head h6 {
   color: var(--black-100);
   font-family: var(--arial-fonts);
   font-size: var(--font-size-16);

@@ -148,7 +148,11 @@
                 </div>
                 <div class="cta_header_ar hide_mobile_ar get_price_list_popup">
                     <div class="mini_cart_ar">
-                        <?php include get_template_directory() . '/assets/img/Vector (31).svg' ?>
+                        <?php if(is_user_logged_in()){
+                            include get_template_directory() . '/assets/img/ShoppingCart.svg';
+                        }else{ 
+                            echo "<h6>My Quote</h6>";
+                        } ?>
                     </div>
                     <a href="<?php echo get_field('header_cta_link', 'option'); ?>">
                         <?php echo get_field('header_cta_text', 'option'); ?>

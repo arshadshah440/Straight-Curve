@@ -73,7 +73,8 @@
   margin-bottom: 20px;
 }
 .str-form-group-am select,
-.str-form-group-am input {
+.str-form-group-am input,
+.str-form-group-am textarea {
   padding: 12px;
   border-radius: 6px;
   border: 1px solid #1b49321a;
@@ -341,21 +342,43 @@ select:invalid {
 
 div#notification_ar {
   width: fit-content;
+  min-width: 434px;
   position: fixed;
   right: 0px;
   bottom: 30px;
   background: white;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 10px;
   z-index: 999;
+  box-shadow: 0px 10px 10px 0px #1b49320d;
+}
+#notification_ar img {
+  width: 32px;
+  height: 32px;
+}
+#notification_ar p {
+  font-family: var(--font-family-arial);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+}
+#notification_ar .icons_text_ar {
+  gap: 10px;
+  display: flex;
+  align-items: center;
 }
 .d_flex_icon_message_ar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 15px;
+  padding: 10px;
   width: 100%;
+}
+#close_icon_ar {
+  width: 24px !important;
+  height: 24px !important;
 }
 .d_flex_icon_message_ar p {
   padding-right: 10px;
@@ -549,11 +572,36 @@ section.pdf_wrapper_ar {
 .disclaimer_ar {
   margin-top: 50px;
 }
-.page_form_ar input[type="submit"]:hover{
+.page_form_ar input[type="submit"]:hover {
   box-shadow: 0px 10px 10px 0px #da792440;
 }
 
-.disabledbtn_ar{
+.disabledbtn_ar {
   opacity: 0.5;
-  pointer-events: none !important;;
+  pointer-events: none !important;
+}
+
+/* // loggin quote */
+
+.remvoer_side_ar a img {
+  width: 20px;
+}
+.remvoer_side_ar {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+  position: relative;
+}
+.remvoer_side_ar h6 {
+  font-family: var(--font-family-arial);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 0px;
+  color: var(--black-black-100, #000000);
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: max-content;
 }

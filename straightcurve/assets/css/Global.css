@@ -102,3 +102,15 @@ p{
     }
 
 }
+.show_it_ar{
+    display: flex;
+}
+.hide_it_ar{
+    display: none !important;
+}
+#text_inform_ar span{
+    color: #FF0000;
+}
+#text_inform_ar{
+    padding-right: 13px;
+}
